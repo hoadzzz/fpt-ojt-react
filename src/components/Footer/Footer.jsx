@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Grid from '../Grid/Grid'
 
 import logo from '../../assets/images/Logo-2.png'
-
+import './Footer.css'
 const footerAboutLinks = [
     {
         display: "Giới thiệu",
