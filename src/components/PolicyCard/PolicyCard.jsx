@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./PolicyCard.css";
+
 const PolicyCard = (props) => {
   return (
     <div className="policy-card">

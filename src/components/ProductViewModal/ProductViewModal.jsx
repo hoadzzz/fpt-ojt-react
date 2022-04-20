@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import ProductView from "../ProductView/ProductView";
+import "./ProductViewModal.css";
 
 import Button from "../Button/Button";
 
