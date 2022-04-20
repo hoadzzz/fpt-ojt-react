@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
-import { set } from "../redux/product-modal/productModalSlice";
+import { set } from "../../redux/product-modal/productModalSlice";
 
-import Button from "./Button";
+import Button from "../Button/Button";
 
-import numberWithCommas from "../utils/numberWithCommas";
+import numberWithCommas from "../../utils/numberWithCommas";
 
 const ProductCard = (props) => {
   const dispatch = useDispatch();
 
   return (
     <div className="product-card">
-      <Link to={`/catalog/${props.slug}`}>
+      <Link to={`/Catalog/${props.slug}`}>
         <div className="product-card__image">
           <img src={props.img01} alt="" />
           <img src={props.img02} alt="" />

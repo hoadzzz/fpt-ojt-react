@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
-import ProductView from "./ProductView";
+import ProductView from "../ProductView/ProductView";
 
-import Button from "./Button";
+import Button from "../Button/Button";
 
-import { remove } from "../redux/product-modal/productModalSlice";
+import { remove } from "../../redux/product-modal/productModalSlice";
 
-import productData from "../assets/fake-data/products";
+import productData from "../../assets/fake-data/products";
 
 const ProductViewModal = () => {
   const productSlug = useSelector((state) => state.productModal.value);
