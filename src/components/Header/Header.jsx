@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import logo from '../../assets/images/Logo-2.png'
-
+import './Header.css'
 const mainNav = [
     {
         display: "Trang chủ",

@@ -8,7 +8,7 @@ const Helmet = props => {
     React.useEffect(() => {
         window.scrollTo(0,0)
     }, [])
-
+    
     return (
         <div>
             {props.children}
