@@ -8,20 +8,12 @@
 }
 @media only screen and (max-width: 1024px) {
     .hero-slider {
-<<<<<<< HEAD
         margin-top: 70px;
-=======
-        margin-top: calc(70px * -1);
->>>>>>> 4a976d7 (fix url)
    }
 }
 @media only screen and (max-width: 600px) {
     .hero-slider {
-<<<<<<< HEAD
         margin-top: 40px;
-=======
-        margin-top: calc(40px * -1);
->>>>>>> 4a976d7 (fix url)
    }
 }
 .hero-slider__item {
