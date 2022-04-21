@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../../components/Button/Button'
 import "./Login.css";
+import { Link, useLocation } from 'react-router-dom'
 
 const Login = () => {
     return (
@@ -22,7 +23,11 @@ const Login = () => {
                     </div>
                 </div>
                 <Button size="sm">Đăng nhập</Button>
-                <Button size="sm">Đăng kí</Button>
+                <Link to="/signup">
+                    <Button size="sm">Đăng kí</Button>
+                </Link>
+
+                
                 <p className="forgot-password text-right">
                     Forgot <a href="#">password?</a>
                 </p>
