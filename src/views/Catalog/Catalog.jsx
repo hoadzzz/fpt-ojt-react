@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react'
 
 import Helmet from '../../components/Helmet/Helmet'
-import CheckBox from '../../components/CheckBox/CheckBox'
+import CheckBox from '../../components/Checkbox/Checkbox'
 
 import productData from '../../assets/fake-data/products'
 import category from '../../assets/fake-data/category'

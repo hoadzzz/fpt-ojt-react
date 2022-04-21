@@ -6,6 +6,7 @@
     padding-left: 0;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: transform 0.5s ease;
+    height: 80px;
 }
 .policy-card:hover {
     transform: translateY(-20px);
