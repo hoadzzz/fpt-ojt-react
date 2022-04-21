@@ -1,0 +1,16 @@
+.signup {
+    width: 60%;
+    margin: 0 auto;
+    border: 1px solid rgb(123, 130, 221);
+    border-radius: 10px;
+    padding: 10px 10px;
+}
+
+.signup form {
+    padding: 10px;
+}
+
+.title-signup {
+    font-size: 30px;
+    margin-bottom: 20px;
+}

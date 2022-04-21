@@ -41,6 +41,8 @@
 }
 .btn-sm {
     font-size: 1rem;
+    margin-right: 10px;
+    margin-bottom: 20px;
 }
 .btn-sm .btn__txt {
     padding: 0.7rem 1.5rem;
@@ -48,3 +50,4 @@
 .btn-block {
     width: 100%;
 }
+
