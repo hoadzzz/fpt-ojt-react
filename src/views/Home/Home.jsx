@@ -13,6 +13,7 @@ import policy from '../../assets/fake-data/policy'
 import productData from '../../assets/fake-data/products'
 
 import banner from '../../assets/images/banner.png'
+import SaleCard from '../../components/SaleCard/SaleCard'
 
 const Home = () => {
     return (
@@ -78,6 +79,34 @@ const Home = () => {
             </Section>
             {/* end best selling section */}
 
+            {/* sale section */}
+            <Section>
+                <SectionTitle>
+                    săn sale online mỗi ngày
+                </SectionTitle>
+                <SectionBody>
+                    <Grid
+                        col={4}
+                        mdCol={2}
+                        smCol={1}
+                        gap={20}
+                    >
+                        {
+                            productData.getProducts(4).map((item, index) => (
+                                <SaleCard
+                                    key={index}
+                                    img={item.image01}
+                                    name={item.title}
+                                    price={Number(item.price)}
+                                    slug={item.slug}
+                                />
+                            ))
+                        }
+                    </Grid>
+                </SectionBody>
+            </Section>
+            {/* end best selling section */}
+
             {/* new arrival section */}
             <Section>
                 <SectionTitle>
@@ -106,7 +135,7 @@ const Home = () => {
                 </SectionBody>
             </Section>
             {/* end new arrival section */}
-            
+
             {/* banner */}
             <Section>
                 <SectionBody>
