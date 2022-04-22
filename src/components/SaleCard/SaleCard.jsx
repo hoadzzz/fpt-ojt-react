@@ -2,13 +2,17 @@ import React from 'react'
 import './SaleCard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const SaleCard = (props) => {
     return (
         <div class="product_card">
-            <div class="image_product">
-                <img src={props.img} />
+            <Link to={`/catalog/${props.slug}`}>
+            <div className="product-card__image">
+                <img src={props.img01} alt=""/>
+                <img src={props.img02} alt="" />
             </div>
+            </Link>
             <div className='detail'>
                 <p class="offer">
                     <img src="https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png" alt="Giảm sốc" width="20"

@@ -11,7 +11,7 @@ const heroSliderData = [
         path: "/catalog/ao-thun-dinosaur-01"
     },
     {
-        title: "Polo Nữ Dáng Suông Modal",
+        title: "Polo Nữ Dáng Suông",
         description: "Polo nữ dáng suông Modal sử dụng công nghệ vải cao cấp thân thiện với môi trường sản xuất độc quyền chống co rút vải, áo polo nữ vải modal là sản phẩm thích hợp cho các bạn có môi trường làm việc năng động như hiện nay",
         img: img2,
         path: "/catalog/ao-thun-dinosaur-02",

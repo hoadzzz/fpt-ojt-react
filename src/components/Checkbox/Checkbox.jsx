@@ -23,8 +23,8 @@ const CheckBox = (props) => {
 
   const checkboxAnimationRef = useSpringRef();
   const checkboxAnimationStyle = useSpring({
-    backgroundColor: props.checked ? "#808" : "#fff",
-    borderColor: props.checked ? "#808" : "#ddd",
+    backgroundColor: props.checked ? "#4267b2" : "#fff",
+    borderColor: props.checked ? "#4267b2" : "#ddd",
     config: config.gentle,
     ref: checkboxAnimationRef,
   });

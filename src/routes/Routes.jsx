@@ -9,6 +9,7 @@ import Product from "../views/Product/Product";
 import Contact from "../views/Contact/Contact";
 import Login from "../views/Log-in/Login";
 import Signup from "../views/Sign-up/Signup";
+import Accessories from "../views/Accessories/Accessories";
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
       <Route path="/contact" component={Contact} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
+      <Route path="/accessories" component={Accessories}/>
     </Switch>
   );
 };

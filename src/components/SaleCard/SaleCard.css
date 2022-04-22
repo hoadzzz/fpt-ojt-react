@@ -1,35 +1,8 @@
-.product_card {
-    margin-bottom: 30px;
-}
-
 .detail{
     width: 60%;
     margin-left: 17%;
     margin-top: 5%;
 }
-
-.image_product {
-    padding-top: 100%;
-    position: relative;
-    overflow: hidden;
-}
-
-.image_product img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 100%;
-}
-
-.image_product img:nth-child(1) {
-    transform: translateX(-50%) scale(1);
-    transition: transform 0.5s ease;
-}
-.image_product:hover img:nth-child(1) {
-    transform: translateX(-50%) scale(0);
-}
-
 
 .offer {
     background: linear-gradient(to right, #ef3006, #c60004);

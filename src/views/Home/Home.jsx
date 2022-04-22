@@ -95,7 +95,8 @@ const Home = () => {
                             productData.getProducts(4).map((item, index) => (
                                 <SaleCard
                                     key={index}
-                                    img={item.image01}
+                                    img01={item.image01}
+                                    img02={item.image02}
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
