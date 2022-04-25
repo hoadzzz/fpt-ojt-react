@@ -9,3 +9,8 @@
 .login form {
     padding: 10px;
 }
+
+.login-title {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
