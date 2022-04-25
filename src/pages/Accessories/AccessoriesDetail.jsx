@@ -10,7 +10,6 @@ import ProductCard from "../../components/organisms/ProductCard/ProductCard";
 import ProductView from "../../components/templates/ProductView/ProductView";
 
 const AccessoriesDetail = (props) => {
-    console.log("AAA");
     const accessory = accessoriesData.getAccessoryBySlug(props.match.params.slug);
     
     const relatedAccessories = accessoriesData.getAccessories(2);
