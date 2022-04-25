@@ -16,7 +16,7 @@ const accessories = [
         price: '499000',
         image01: product_13_image_01,
         image02: product_13_image_02,
-        categorySlug: "giay-cao-got",
+        categorySlug: "phu-kien",
         colors: ["white", "cream"],
         slug: "giay-cao-got-day-manh",
         size: ["35", "36", "37", "38", "39"],
@@ -27,7 +27,7 @@ const accessories = [
         price: '499000',
         image01: product_14_image_01,
         image02: product_14_image_02,
-        categorySlug: "giay-cao-got",
+        categorySlug: "phu-kien",
         colors: ["white", "cream"],
         slug: "giay-cao-got-dinh-no",
         size: ["35", "36", "37", "38", "39"],
@@ -38,7 +38,7 @@ const accessories = [
         price: '489000',
         image01: product_15_image_01,
         image02: product_15_image_02,
-        categorySlug: "giay-scandal",
+        categorySlug: "phu-kien",
         colors: ["white", "cream"],
         slug: "giay-scandal-quai-cheo",
         size: ["35", "36", "37", "38", "39"],
@@ -49,7 +49,7 @@ const accessories = [
         price: '189000',
         image01: product_16_image_01,
         image02: product_16_image_02,
-        categorySlug: "tat-nu",
+        categorySlug: "phu-kien",
         colors: ["Nhiều màu"],
         slug: "tat-nu",
         size: ["35", "36", "37", "38", "39"],
@@ -65,10 +65,30 @@ const getAccessories = (count) => {
     const start = Math.floor(Math.random() * (max - min) + min)
     return accessories.slice(start, start + count)
 }
+const getAccessoryBySlug = (slug) => accessories.find(e => e.slug === slug)
+
+const getCartItemsInfo = (cartItems) => {
+    let res = []
+    if (cartItems.length > 0) {
+        cartItems.forEach(e => {
+            let product = getAccessoryBySlug(e.slug)
+            res.push({
+                ...e,
+                product: product
+            })
+        })
+    }
+    // console.log(res)
+    // console.log('sorted')
+    // console.log(res.sort((a, b) => a.slug > b.slug ? 1 : (a.slug < b.slug ? -1 : 0)))
+    return res.sort((a, b) => a.id > b.id ? 1 : (a.id < b.id ? -1 : 0))
+}
 
 const accessoriesData = {
     getAllAccessories,
     getAccessories,
+    getAccessoryBySlug,
+    getCartItemsInfo
 }
 
 export default accessoriesData

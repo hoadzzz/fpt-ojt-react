@@ -2,14 +2,15 @@ import React from "react";
 
 import { Route, Switch } from "react-router-dom";
 
-import Home from "../views/Home/Home";
-import Catalog from "../views/Catalog/Catalog";
-import Cart from "../views/Cart/Cart";
-import Product from "../views/Product/Product";
-import Contact from "../views/Contact/Contact";
-import Login from "../views/Log-in/Login";
-import Signup from "../views/Sign-up/Signup";
-import Accessories from "../views/Accessories/Accessories";
+import Home from "../pages/Home/Home";
+import Catalog from "../pages/Catalog/Catalog";
+import Cart from "../pages/Cart/Cart";
+import Product from "../pages/Product/Product";
+import Contact from "../pages/Contact/Contact";
+import Login from "../pages/Log-in/Login";
+import Signup from "../pages/Sign-up/Signup";
+import Accessories from "../pages/Accessories/Accessories";
+import AccessoriesDetail from "../pages/Accessories/AccessoriesDetail";
 
 const Routes = () => {
   return (
@@ -22,6 +23,7 @@ const Routes = () => {
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
       <Route path="/accessories" component={Accessories}/>
+      <Route path="/accessories/:slug" component={AccessoriesDetail}/>
     </Switch>
   );
 };
