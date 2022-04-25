@@ -78,7 +78,9 @@ const Header = () => {
                     </div>
                     <div className="header__menu__right">
                         <div className="header__menu__item header__menu__right__item">
-                            <i className="bx bx-search"></i>
+                            <Link to="/search">
+                                <i className="bx bx-search"></i>
+                            </Link>
                         </div>
                         <div className="header__menu__item header__menu__right__item">
                             <Link to="/cart">

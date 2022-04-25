@@ -7,7 +7,7 @@ const Login = () => {
     return (
         <div className="login">
             <form>
-                <h3>Sign In</h3>
+                <h3 className="login-title">Sign In</h3>
                 <div className="form-group">
                     <label>Email address</label>
                     <input type="email" className="form-control" placeholder="Enter email" />
