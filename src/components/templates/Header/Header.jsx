@@ -78,9 +78,15 @@ const Header = () => {
                     </div>
                     <div className="header__menu__right">
                         <div className="header__menu__item header__menu__right__item">
-                            <Link to="/search">
+                            {/* <Link to="/search">
                                 <i className="bx bx-search"></i>
-                            </Link>
+                            </Link> */}
+
+                            <div className="search-box">
+                                <input type="text" id="search" placeholder="Search..."></input>
+                                <button><i className="bx bx-search"></i></button>
+                            </div>    
+
                         </div>
                         <div className="header__menu__item header__menu__right__item">
                             <Link to="/cart">
