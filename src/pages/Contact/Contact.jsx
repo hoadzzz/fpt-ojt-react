@@ -1,11 +1,9 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
 import Button from "../../components/atoms/Button/Button";
 import Grid from "../../components/molecules/Grid/Grid";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { themeContext } from "../../Context";
 
 import "./Contact.css";
-
 
 const contact_infos = [
   {
@@ -36,23 +34,20 @@ const Contact = () => {
     event.preventDefault();
     alert(
       "name: " +
-      nameRef.current.value +
-      " email: " +
-      emailRef.current.value +
-      " content: " +
-      contentRef.current.value
+        nameRef.current.value +
+        " email: " +
+        emailRef.current.value +
+        " content: " +
+        contentRef.current.value
     );
   };
-
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
 
   return (
     <Helmet title="Contact">
       <div className="contact_frame">
         <p className="title">Liên hệ</p>
-        <div className="contact-top" >
-          <Grid col={3} gap={20} >
+        <div className="contact-top">
+          <Grid col={3} gap={20}>
             {contact_infos.map((item, index) => (
               <div className="contact" key={index}>
                 <div className="contact__icon">
@@ -65,8 +60,8 @@ const Contact = () => {
                       item.type === "email"
                         ? `mailto:chamsockhachhang@yody.vn`
                         : item.type === "phone"
-                          ? "tel:02473056665"
-                          : "/"
+                        ? "tel:02473056665"
+                        : "/"
                     }
                     className="contact__info__details"
                   >
@@ -107,7 +102,11 @@ const Contact = () => {
 
               <div className="form-group contact__form-content">
                 <label>Nội dung</label>
-                <textarea className="form-control" type="text" ref={contentRef} />
+                <textarea
+                  className="form-control"
+                  type="text"
+                  ref={contentRef}
+                />
               </div>
               <Button size="sm">Gửi liên hệ</Button>
             </form>

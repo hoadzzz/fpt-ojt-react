@@ -1,17 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import "./PolicyCard.css";
-import { themeContext } from "../../../Context";
+import { useSelector } from "react-redux";
 
 const PolicyCard = (props) => {
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+  const darkMode = useSelector((state) => state.theme.darkMode);
 
   return (
-    <div className="policy-card" style={{
-      color: darkMode ? "white" : "black",
-    }}>
+    <div
+      className="policy-card"
+      style={{
+        color: darkMode ? "white" : "black",
+      }}
+    >
       <div className="policy-card__icon">
         <i className={props.icon}></i>
       </div>

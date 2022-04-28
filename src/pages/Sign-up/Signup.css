@@ -14,3 +14,9 @@
     font-size: 30px;
     margin-bottom: 20px;
 }
+
+.signup .forgot-password a {
+    color: var(--blue);
+    font-weight: 600;
+    margin-left: 10px;
+}
