@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 import logo from '../../../assets/images/Logo-2.png'
+import Toggle from '../../atoms/Toggle/Toggle'
 import './Header.css'
+import { themeContext } from "../../../Context";
 const mainNav = [
     {
         display: "Trang chủ",
@@ -23,6 +25,8 @@ const mainNav = [
 ]
 
 const Header = () => {
+    const theme = useContext(themeContext);
+    const darkMode = theme.state.darkMode;
 
     const { pathname } = useLocation()
     const activeNav = mainNav.findIndex(e => e.path === pathname)
@@ -47,7 +51,9 @@ const Header = () => {
     const menuToggle = () => menuLeft.current.classList.toggle('active')
 
     return (
-        <div className="header" ref={headerRef}>
+        <div className="header" ref={headerRef} style={{
+            background: darkMode ? "var(--purple)" : "white",
+        }}>
             <div className="container">
                 <div className="header__logo">
                     <Link to="/">
@@ -75,6 +81,9 @@ const Header = () => {
                                 </div>
                             ))
                         }
+                        <div className="header__menu__item header__menu__left__item">
+                            <Toggle />
+                        </div>
                     </div>
                     <div className="header__menu__right">
                         <div className="header__menu__item header__menu__right__item">

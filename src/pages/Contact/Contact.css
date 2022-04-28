@@ -4,11 +4,16 @@
     margin-bottom: 20px;
 }
 
+.contact_frame{
+    margin-top: calc(70px * -1);
+    padding-top: 20px;
+}
 .contact {
     background-color: #ccc;
     padding: 20px;
     border-radius: 5px;
     display: flex;
+    
 }
 
 .contact__info {
@@ -16,6 +21,7 @@
     flex-direction: column;
     justify-content: space-around;
     padding-left: 10px;
+    color: black;
 }
 
 .contact__info__name {
