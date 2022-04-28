@@ -11,6 +11,7 @@ import Login from "../pages/Log-in/Login";
 import Signup from "../pages/Sign-up/Signup";
 import Accessories from "../pages/Accessories/Accessories";
 import AccessoriesDetail from "../pages/Accessories/AccessoriesDetail";
+import Checkout from "../pages/Checkout/Checkout";
 
 const Routes = () => {
   return (
@@ -22,8 +23,9 @@ const Routes = () => {
       <Route path="/contact" component={Contact} />
       <Route path="/login" component={Login} />
       <Route path="/signup" component={Signup} />
-      <Route path="/accessories" component={Accessories}/>
-      <Route path="/accessories/:slug" component={AccessoriesDetail}/>
+      <Route path="/accessories" component={Accessories} />
+      <Route path="/accessories/:slug" component={AccessoriesDetail} />
+      <Route path="/checkout" component={Checkout} />
     </Switch>
   );
 };

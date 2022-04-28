@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
-import "./PolicyCard.css";
+import { themeContext } from "../../../Context";
 
 const PolicyCard = (props) => {
+  const theme = useContext(themeContext);
+  const darkMode = theme.state.darkMode;
+
   return (
-    <div className="policy-card">
+    <div className="policy-card" style={{
+      color: darkMode ? "white" : "black",
+    }}>
       <div className="policy-card__icon">
         <i className={props.icon}></i>
       </div>

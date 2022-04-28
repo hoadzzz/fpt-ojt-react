@@ -6,14 +6,16 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { set } from "../../../redux/product-modal/productModalSlice";
-
 import Button from "../../atoms/Button/Button";
-
 import numberWithCommas from "../../../utils/numberWithCommas";
+
+import { useContext } from "react";
+import { themeContext } from "../../../Context";
 
 const AccessoryCard = (props) => {
   const dispatch = useDispatch();
-
+  const theme = useContext(themeContext);
+  const darkMode = theme.state.darkMode;
   return (
     <div className="product-card">
       <Link to={`/accessories/${props.slug}`}>
@@ -22,7 +24,9 @@ const AccessoryCard = (props) => {
           <img src={props.img02} alt="" />
         </div>
         <h3 className="product-card__name">{props.name}</h3>
-        <div className="product-card__price">
+        <div className="product-card__price" style={{
+          color: darkMode ? 'white' : 'black'
+        }}>
           {numberWithCommas(props.price)}
           <span className="product-card__price__old">
             <del>{numberWithCommas(599000)}</del>

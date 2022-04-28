@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import Button from '../../atoms/Button/Button'
-import './HeroSlider.css'
 const HeroSlider = props => {
 
     const data = props.data
