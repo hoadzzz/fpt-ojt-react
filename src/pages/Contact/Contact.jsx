@@ -4,9 +4,6 @@ import Grid from "../../components/molecules/Grid/Grid";
 import Helmet from "../../components/templates/Helmet/Helmet";
 import { themeContext } from "../../Context";
 
-import "./Contact.css";
-
-
 const contact_infos = [
   {
     icon: "bx bxs-map",

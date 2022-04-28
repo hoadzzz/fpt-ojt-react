@@ -11,8 +11,6 @@ import { remove } from "../../../redux/product-modal/productModalSlice";
 import Button from "../../atoms/Button/Button";
 import numberWithCommas from "../../../utils/numberWithCommas";
 
-import "./ProductView.css";
-
 const ProductView = (props) => {
   const dispatch = useDispatch();
 

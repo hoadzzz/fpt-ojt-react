@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
-import "./PolicyCard.css";
 import { themeContext } from "../../../Context";
 
 const PolicyCard = (props) => {

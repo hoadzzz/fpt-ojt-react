@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 
 import logo from '../../../assets/images/Logo-2.png'
 import Toggle from '../../atoms/Toggle/Toggle'
-import './Header.css'
 import { themeContext } from "../../../Context";
 const mainNav = [
     {

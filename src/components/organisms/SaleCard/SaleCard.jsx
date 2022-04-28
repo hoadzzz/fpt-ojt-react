@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import './SaleCard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { themeContext } from "../../../Context";
+import numberWithCommas from "../../../utils/numberWithCommas";
 
 const SaleCard = (props) => {
     const theme = useContext(themeContext);
@@ -32,10 +32,10 @@ const SaleCard = (props) => {
                 <div style={{
                     color: darkMode ? "white" : "#666",
                 }}>
-                    <p className="price" >{props.price + props.price * 0.4}</p>
+                    <p className="price" >{numberWithCommas(props.price + props.price * 0.4)}</p>
                     <span className="percent"> -40%</span>
                 </div>
-                <strong className="sale">{props.price}</strong>
+                <strong className="sale">{numberWithCommas(props.price)}</strong>
                 <div>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>

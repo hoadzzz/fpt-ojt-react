@@ -10,8 +10,6 @@ import { set } from "../../../redux/product-modal/productModalSlice";
 import Button from "../../atoms/Button/Button";
 
 import numberWithCommas from "../../../utils/numberWithCommas";
-
-import "./ProductCard.css";
 import { themeContext } from "../../../Context";
 
 const ProductCard = (props) => {

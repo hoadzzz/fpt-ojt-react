@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import Grid from '../../molecules/Grid/Grid'
 
 import logo from '../../../assets/images/Logo-2.png'
-import './Footer.css'
 import { themeContext } from "../../../Context";
 
 const footerAboutLinks = [

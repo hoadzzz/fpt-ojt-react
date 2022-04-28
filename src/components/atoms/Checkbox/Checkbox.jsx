@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import "./Checkbox.css";
 import {
   animated,
   useSpring,
@@ -10,7 +9,6 @@ import {
   useChain,
 } from "react-spring";
 
-import "./Checkbox.css";
 
 const CheckBox = (props) => {
   const inputRef = React.useRef(null);

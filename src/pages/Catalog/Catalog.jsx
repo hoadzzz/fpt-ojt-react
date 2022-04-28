@@ -9,7 +9,6 @@ import colors from "../../assets/fake-data/product-color";
 import size from "../../assets/fake-data/product-size";
 import Button from "../../components/atoms/Button/Button";
 import InfinityList from "../../components/organisms/InfinityList/InfinityList";
-import "./Catalog.css";
 
 const Catalog = () => {
   const initFilter = {
