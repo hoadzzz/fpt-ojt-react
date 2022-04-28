@@ -19,7 +19,7 @@
 .product-view__modal__content {
     margin: auto;
     padding: 2rem;
-    background-color: #fff;
+    background-color: rgb(218, 24, 24);
     width: 50%;
     opacity: 0;
     transform: translateY(-250px);

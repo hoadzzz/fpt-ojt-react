@@ -1,11 +1,10 @@
 .header {
-    background-color: #fff;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 99;
-    height: 130px;
+    height: 100px;
     transition: height 0.3s ease;
 }
 @media only screen and (max-width: 1024px) {
@@ -39,7 +38,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-}
+}         
 .header__logo img {
     height: 28px;
 }
@@ -75,6 +74,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    color: black;
 }
 .header__menu__right {
     font-size: 2.25rem;
@@ -100,7 +100,6 @@
 @media only screen and (max-width: 1024px) {
     .header__menu__left {
         flex-direction: column;
-        background-color: #fff;
         position: absolute;
         left: 0;
         top: 0;

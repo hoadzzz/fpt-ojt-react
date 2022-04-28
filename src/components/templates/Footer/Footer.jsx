@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Link } from 'react-router-dom'
 
@@ -6,6 +6,8 @@ import Grid from '../../molecules/Grid/Grid'
 
 import logo from '../../../assets/images/Logo-2.png'
 import './Footer.css'
+import { themeContext } from "../../../Context";
+
 const footerAboutLinks = [
     {
         display: "Giới thiệu",
@@ -44,8 +46,10 @@ const footerCustomerLinks = [
     }
 ]
 const Footer = () => {
+    const theme = useContext(themeContext);
+    const darkMode = theme.state.darkMode;
     return (
-        <footer className="footer">
+        <footer className="footer" >
             <div className="container">
                 <Grid
                     col={4}
@@ -53,7 +57,7 @@ const Footer = () => {
                     smCol={1}
                     gap={10}
                 >
-                    <div>
+                    <div >
                         <div className="footer__title">
                             Tổng đài hỗ trợ
                         </div>
@@ -73,11 +77,13 @@ const Footer = () => {
                         <div className="footer__title">
                             Về Yolo
                         </div>
-                        <div className="footer__content">
+                        <div className="footer__content" >
                             {
                                 footerAboutLinks.map((item, index) => (
-                                    <p key={index}>
-                                        <Link to={item.path}>
+                                    <p key={index} >
+                                        <Link to={item.path} style={{
+                                            color: darkMode ? "white" : "black",
+                                        }}>
                                             {item.display}
                                         </Link>
                                     </p>
@@ -93,7 +99,9 @@ const Footer = () => {
                             {
                                 footerCustomerLinks.map((item, index) => (
                                     <p key={index}>
-                                        <Link to={item.path}>
+                                        <Link to={item.path} style={{
+                                            color: darkMode ? "white" : "black",
+                                        }}>
                                             {item.display}
                                         </Link>
                                     </p>

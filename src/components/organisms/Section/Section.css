@@ -1,5 +1,7 @@
 .section {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
+    margin-top: calc(70px * -1);
+    padding-top: 20px;
 }
 .section > * ~ * {
     margin-top: 70px;
@@ -8,4 +10,5 @@
     font-size: 2rem;
     text-transform: capitalize;
     text-align: center;
+    margin-top: 5rem;
 }
