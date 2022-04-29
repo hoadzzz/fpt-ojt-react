@@ -12,8 +12,8 @@ import heroSliderData from '../../assets/fake-data/hero-slider'
 import policy from '../../assets/fake-data/policy'
 import productData from '../../assets/fake-data/products'
 
-import banner from '../../assets/images/banner.png'
 import SaleCard from '../../components/organisms/SaleCard/SaleCard'
+import Banner from '../../components/templates/Banner/Banner'
 
 const Home = () => {
     return (
@@ -140,9 +140,10 @@ const Home = () => {
             {/* banner */}
             <Section>
                 <SectionBody>
-                    <Link to="/catalog">
+                    {/* <Link to="/catalog">
                         <img src={banner} alt="" />
-                    </Link>
+                    </Link> */}
+                    <Banner />
                 </SectionBody>
             </Section>
             {/* end banner */}

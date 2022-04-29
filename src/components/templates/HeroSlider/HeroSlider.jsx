@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useContext } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-
 import Button from '../../atoms/Button/Button'
+import { themeContext } from '../../../Context'
+
 const HeroSlider = props => {
 
     const data = props.data
@@ -39,7 +40,7 @@ const HeroSlider = props => {
         <div className="hero-slider">
             {
                 data.map((item, index) => (
-                    <HeroSliderItem key={index} item={item} active={index === activeSlide}/>
+                    <HeroSliderItem key={index} item={item} active={index === activeSlide} />
                 ))
             }
             {
@@ -70,32 +71,38 @@ HeroSlider.propTypes = {
     timeOut: PropTypes.number
 }
 
-const HeroSliderItem = props => (
-    <div className={`hero-slider__item ${props.active ? 'active' : ''}`}>
-        <div className="hero-slider__item__info">
-            <div className={`hero-slider__item__info__title color-${props.item.color}`}>
-                <span>{props.item.title}</span>
+const HeroSliderItem = props => {
+    const theme = useContext(themeContext);
+    const darkMode = theme.state.darkMode;
+    return (
+        <div className={`hero-slider__item ${props.active ? 'active' : ''}`}>
+            <div className="hero-slider__item__info">
+                <div className={`hero-slider__item__info__title color-${props.item.color}`}>
+                    <span>{props.item.title}</span>
+                </div>
+                <div className="hero-slider__item__info__description">
+                    <span style={{
+                        color: darkMode ? "white" : "#8d8d8d",
+                    }}>{props.item.description}</span>
+                </div>
+                <div className="hero-slider__item__info__btn">
+                    <Link to={props.item.path}>
+                        <Button
+                            backgroundColor={props.item.color}
+                            icon="bx bx-cart"
+                            animate={true}
+                        >
+                            xem chi tiết
+                        </Button>
+                    </Link>
+                </div>
             </div>
-            <div className="hero-slider__item__info__description">
-                <span>{props.item.description}</span>
-            </div>
-            <div className="hero-slider__item__info__btn">
-                <Link to={props.item.path}>
-                    <Button
-                        backgroundColor={props.item.color}
-                        icon="bx bx-cart"
-                        animate={true}
-                    >
-                        xem chi tiết
-                    </Button>
-                </Link>
+            <div className="hero-slider__item__image">
+                <div className={`shape bg-${props.item.color}`}></div>
+                <img src={props.item.img} alt="" />
             </div>
         </div>
-        <div className="hero-slider__item__image">
-            <div className={`shape bg-${props.item.color}`}></div>
-            <img src={props.item.img} alt="" />
-        </div>
-    </div>
-)
+    )
+}
 
 export default HeroSlider
