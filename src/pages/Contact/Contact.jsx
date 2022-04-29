@@ -1,8 +1,7 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef} from "react";
 import Button from "../../components/atoms/Button/Button";
 import Grid from "../../components/molecules/Grid/Grid";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { themeContext } from "../../Context";
 
 const contact_infos = [
   {
@@ -40,9 +39,6 @@ const Contact = () => {
       contentRef.current.value
     );
   };
-
-  const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
 
   return (
     <Helmet title="Contact">
