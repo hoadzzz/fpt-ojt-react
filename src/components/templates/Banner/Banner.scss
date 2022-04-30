@@ -9,7 +9,7 @@ $letterStagger: 0.1s;
     overflow: hidden;
     position: relative;
     height: 70vh;
-    color: #fff;
+    color: $main-bg;
 
     @mixin sliderReady {
         .slider.s--ready & {

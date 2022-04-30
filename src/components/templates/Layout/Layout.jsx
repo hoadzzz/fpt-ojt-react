@@ -7,6 +7,8 @@ import Footer from '../Footer/Footer'
 import ProductViewModal from '../ProductViewModal/ProductViewModal'
 
 import Routes from '../../../routes/Routes'
+import FloatButton from '../../atoms/FloatButton/FloatButton'
+
 
 const Layout = () => {
     return (
@@ -19,6 +21,7 @@ const Layout = () => {
                             <Routes/>
                         </div>
                     </div>
+                    <FloatButton/>
                     <Footer/>
                     <ProductViewModal/>
                 </div>

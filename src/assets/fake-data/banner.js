@@ -4,18 +4,18 @@ const b3 = require("../images/banner/b3.png").default
 
 const bannerData = [
     {
-        city: 'Paris',
-        country: 'France',
+        city: 'Ha Noi',
+        country: 'Fashion King',
         img: b1
     },
        {
-        city: 'Prague',
-        country: 'Czech Republic',
+        city: 'Da Nang',
+        country: 'Free Style',
         img: b2,
     },
     {
-        city: 'Amsterdam',
-        country: 'Netherlands',
+        city: 'Ho Chi Minh',
+        country: 'Summer',
         img: b3,
     }
 ]
