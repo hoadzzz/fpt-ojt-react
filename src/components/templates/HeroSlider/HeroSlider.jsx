@@ -82,7 +82,7 @@ const HeroSliderItem = props => {
                 </div>
                 <div className="hero-slider__item__info__description">
                     <span style={{
-                        color: darkMode ? "white" : "#8d8d8d",
+                        color: darkMode ? "white" : "var(--grayDes)",
                     }}>{props.item.description}</span>
                 </div>
                 <div className="hero-slider__item__info__btn">
