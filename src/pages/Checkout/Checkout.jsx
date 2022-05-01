@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState } from "react";
 
 import Helmet from "../../components/templates/Helmet/Helmet";
 
@@ -20,44 +20,74 @@ import CardMedia from "@mui/material/CardMedia";
 import Badge from "@mui/material/Badge";
 import Box from "@mui/material/Box";
 
-import { useSelector } from "react-redux";
+import numberWithCommas from "../../utils/numberWithCommas";
 
-const StyledCard = styled(Card)(({ theme }) => ({
+import { useSelector } from "react-redux";
+import useLocationForm from "../../hooks/useLocationForm";
+
+const StyledCard = styled(Card)(() => ({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   padding: "15px",
+  marginTop: "15px",
 }));
+
+const StyledMethodPayMent = styled(Box)(() => ({
+  display: "flex",
+  justifyContent: "space-between",
+  width: "100%",
+  alignItems: "center",
+}));
+
+const paymentMethods = [
+  {
+    value: "VNPAY-QR",
+    label: "Thanh toán qua VNPAY-QR",
+    image: "https://bizweb.dktcdn.net/assets/themes_support/vnpayqr-icon.png",
+  },
+  {
+    value: "VNPAY",
+    label: "Thanh toán qua VNPAY",
+    image:
+      "https://bizweb.dktcdn.net/assets/themes_support/payment_icon_vnpay.png",
+  },
+  {
+    value: "MoMo",
+    label: "Thanh toán qua Ví MoMo",
+    image: "https://bizweb.dktcdn.net/assets/admin/images/logomm1.png?v=1",
+  },
+];
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
 
-  const [cartProducts, setCartProducts] = useState(
-    productData.getCartItemsInfo(cartItems)
+  const cartProducts = productData.getCartItemsInfo(cartItems);
+
+  const { location, onSelectCity, onSelectDistrict, onSelectWard } =
+    useLocationForm();
+
+  const [paymentMethod, setPaymentMethod] = useState("VNPAY-QR");
+
+  const handleChangePaymentMethod = (event) =>
+    setPaymentMethod(event.target.value);
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + Number(item.quantity) * Number(item.price),
+    0
   );
-
-  const [totalProducts, setTotalProducts] = useState(0);
-
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo(cartItems));
-    setTotalPrice(
-      cartItems.reduce(
-        (total, item) => total + Number(item.quantity) * Number(item.price),
-        0
-      )
-    );
-    setTotalProducts(
-      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
-    );
-  }, [cartItems]);
 
   return (
     <Helmet title="Checkout">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} marginTop={15}>
         <Grid item xs={4}>
-          <Typography variant="p" component="p" className="title">
+          <Typography
+            variant="p"
+            component="p"
+            marginBottom={2}
+            fontSize={20}
+            fontWeight={600}
+          >
             Thông tin đơn hàng
           </Typography>
           <div className="form-group">
@@ -80,40 +110,40 @@ const Checkout = () => {
               labelId="demo-simple-select-label"
               id="demo-simple-select"
               label="Tỉnh thành"
-              //   onChange={(option) => onCitySelect(option)}
-              name="city"
-              //   value={address.city}
+              onChange={(event) => {
+                console.log(event.target.value);
+                onSelectCity(event.target.value);
+              }}
+              value={location.address.city}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {/* {cityOptions.map((item) => (
-                    <MenuItem key={item.value} value={item.value}>
-                      {item.label}
-                    </MenuItem>
-                  ))} */}
+              {location.cityOptions.map((item) => (
+                <MenuItem key={item.Id} value={item.Name}>
+                  {item.Name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ m: "15px 0px" }} fullWidth>
             <InputLabel id="address-district">Quận huyện</InputLabel>
             <Select
-              //   value={address.district}
+              value={location.address.district}
               name="district"
               labelId="address-district"
               id="address-district"
-              //   defaultValue={selectedDistrict}
-              // value={selectedDistrict}
               label="address-district"
-              //   onChange={(option) => onDistrictSelect(option)}
+              onChange={(event) => onSelectDistrict(event.target.value)}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {/* {districtOptions.map((item) => (
-                    <MenuItem key={item.Id} value={item.Id}>
-                      {item.Name}
-                    </MenuItem>
-                  ))} */}
+              {location.districtOptions.map((item) => (
+                <MenuItem key={item.Id} value={item.Name}>
+                  {item.Name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ m: "15px 0px" }} fullWidth>
@@ -122,74 +152,84 @@ const Checkout = () => {
               name="ward"
               labelId="address-ward"
               id="address-ward"
-              //   value={address.ward}
               label="address-district"
-              //   onChange={(option) => {
-              //     console.log(option);
-              //     onWardSelect(option);
-              //   }}
+              value={location.address.ward}
+              onChange={(event) => onSelectWard(event.target.value)}
             >
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              {/* {districtOptions.map((item) => (
-                    <MenuItem key={item.Id} value={item.Id}>
-                      {item.Name}
-                    </MenuItem>
-                  ))} */}
+              {location.wardOptions.map((item) => (
+                <MenuItem key={item.Id} value={item.Name}>
+                  {item.Name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </Grid>
 
         <Grid item xs={4}>
           <Box sx={{ padding: " 0 20px" }}>
-            <Typography variant="p" component="p" className="title">
+            <Typography
+              variant="p"
+              component="p"
+              marginBottom={2}
+              fontSize={20}
+              fontWeight={600}
+            >
               Vận chuyển
             </Typography>
             <FormControl>
               <RadioGroup name="fee-delivery">
                 <FormControlLabel
-                  control={<Radio defaultChecked />}
+                  control={<Radio checked={true} />}
                   label="Miễn phí vận chuyển"
                 />
               </RadioGroup>
             </FormControl>
-            <Typography variant="p" component="p" className="title">
+            <Typography
+              variant="p"
+              component="p"
+              marginBottom={2}
+              marginTop={2}
+              fontSize={20}
+              fontWeight={600}
+            >
               Thanh toán
             </Typography>
-            <FormControl>
-              <RadioGroup name="payment-method">
-                <FormControlLabel
-                  value="VNPAY-QR"
-                  control={<Radio />}
-                  label="Thanh toán qua VNPAY-QR"
-                />
-                <FormControlLabel
-                  value="VNPAY"
-                  control={<Radio />}
-                  label="Thanh toán qua VNPAY"
-                />
-                <FormControlLabel
-                  value="MoMo"
-                  control={<Radio />}
-                  label="Thanh toán qua Ví MoMo"
-                />
-                <FormControlLabel
-                  value="COD"
-                  control={<Radio />}
-                  label="Thanh toán khi giao hàng (COD)"
-                />
+            <FormControl fullWidth>
+              <RadioGroup
+                name="payment-method"
+                value={paymentMethod}
+                onChange={handleChangePaymentMethod}
+              >
+                {paymentMethods.map((item, index) => (
+                  <StyledMethodPayMent>
+                    <FormControlLabel
+                      value={item.value}
+                      control={<Radio />}
+                      label={item.label}
+                    />
+                    <img src={item.image} alt="" height="auto" width="52" />
+                  </StyledMethodPayMent>
+                ))}
               </RadioGroup>
             </FormControl>
           </Box>
         </Grid>
 
         <Grid item xs={4}>
-          <Typography variant="p" component="p" className="title">
+          <Typography
+            variant="p"
+            component="p"
+            marginBottom={2}
+            fontSize={20}
+            fontWeight={600}
+          >
             {`Đơn hàng ${cartProducts.length} sản phẩm`}
           </Typography>
           {cartProducts.map((item, index) => (
-            <StyledCard>
+            <StyledCard key={index}>
               <Badge badgeContent={item.quantity} color="primary">
                 <CardMedia
                   component="img"
@@ -202,15 +242,39 @@ const Checkout = () => {
               <Typography variant="p" component="p">
                 {item.product.title}
               </Typography>
-              <Typography variant="p" component="p">
-                {item.product.price * item.quantity}
+              <Typography variant="p" component="p" fontWeight={600}>
+                {numberWithCommas(item.product.price * item.quantity)}
               </Typography>
             </StyledCard>
           ))}
-
-          <Box mt={2}>
-            <Button size="sm">Đặt hàng</Button>
+          <Box
+            mt={2}
+            mb={2}
+            fontSize={20}
+            display="flex"
+            justifyContent="space-between"
+          >
+            <Typography
+              variant="p"
+              component="p"
+              fontWeight={600}
+              align={"right"}
+            >
+              Thành tiền
+            </Typography>
+            <Typography
+              variant="p"
+              component="p"
+              fontWeight={600}
+              align={"right"}
+              color="primary"
+            >
+              {numberWithCommas(totalPrice)}
+            </Typography>
           </Box>
+          <Button size="sm" mt>
+            Đặt hàng
+          </Button>
         </Grid>
       </Grid>
     </Helmet>
