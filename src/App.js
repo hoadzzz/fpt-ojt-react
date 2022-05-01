@@ -14,7 +14,7 @@ function App() {
   return (
     <Provider store={store}>
       <div style={{
-        background: darkMode ? 'var(--gray)' : 'white',
+        background: darkMode ? 'var(--gray)' : '',
         color: darkMode ? 'white' : 'black'
       }}>
         <Layout />

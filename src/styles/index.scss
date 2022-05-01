@@ -5,6 +5,7 @@
 @import "../components/atoms/Button/Button.scss";
 @import "../components/atoms/Checkbox/Checkbox.scss";
 @import "../components/atoms/Toggle/Toggle.scss";
+@import "../components/atoms/FloatingDiv/Floating.scss";
 @import "../components/organisms/PolicyCard/PolicyCard.scss";
 @import "../components/organisms/ProductCard/ProductCard.scss";
 @import "../components/organisms/SaleCard/SaleCard.scss";
@@ -14,10 +15,14 @@
 @import "../components/templates/HeroSlider/HeroSlider.scss";
 @import "../components/templates/ProductView/ProductView.scss";
 @import "../components/templates//ProductViewModal/ProductViewModal.scss";
+@import "../components/templates/Banner/Banner.scss";
+@import "../components/templates/Intro/Intro.scss";
+@import "../components//templates/Experience/Experience.scss";
 @import "../pages/Cart/Cart.scss";
 @import "../pages/Catalog/Catalog.scss";
 @import "../pages/Contact/Contact.scss";
 @import "../pages/Log-in/Login.scss";
 @import "../pages/Sign-up/Signup.scss";
 @import "../pages/Search/Search.scss";
-@import "../components/templates/Banner/Banner.scss"
+@import "../pages/About/About.scss"
+
