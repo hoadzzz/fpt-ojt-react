@@ -1,0 +1,21 @@
+Prepare Data:
+    DuanML: Banner - Intro Image, Product Image 
+    HoaLM5: Slider Image, Product Image 
+    MinhN4: BoxIcons, Fonts, Product Image 
+
+Components:
+    DuanML: FloatButton, CartItem, CheckBox, Footer, ProductView, Intro, Banner, FloatingDiv, Toggle, AccessoryCard, SaleCard
+    HoaLM5: Grid, Header, Helmet, HeroSlider, Section, SearchBox
+    MinhN4: InfinityList, Layout, PolicyCard, ProductCard, ProductViewModal
+
+Pages:
+    DuanML: Homepage, About, Accessories, Catalog
+    HoaLM5: Sign-up, Log-in, Product, Search
+    MinhN4: Checkout, Cart, Contact 
+
+Functions:
+    DuanML: Add Product To Cart, Switch theme(Context API)
+    HoaLM5: Search, Sort Product
+    MinhN4: Update Cart, Switch theme(Redux toolkit)
+
+Link Demo:  

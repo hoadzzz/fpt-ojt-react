@@ -12,17 +12,17 @@ const Experience = () => {
     return (
         <div className="experience" id='Experience'>
             <div className="achievement">
-                <div className="circle" style={styleCircle}>13+</div>
+                <div className="e-circle" style={styleCircle}>13+</div>
                 <span style={styleText}>Years</span>
                 <span>Experience</span>
             </div>
             <div className="achievement">
-                <div className="circle" style={styleCircle}>200+</div>
+                <div className="e-circle" style={styleCircle}>200+</div>
                 <span style={styleText}>Facilitis</span>
                 <span>In VietNam</span>
             </div>
             <div className="achievement">
-                <div className="circle" style={styleCircle}>5+</div>
+                <div className="e-circle" style={styleCircle}>5+</div>
                 <span style={styleText}>SubCompanies</span>
                 <span>Work</span>
             </div>
