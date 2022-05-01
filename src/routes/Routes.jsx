@@ -11,6 +11,7 @@ import Login from "../pages/Log-in/Login";
 import Signup from "../pages/Sign-up/Signup";
 import Accessories from "../pages/Accessories/Accessories";
 import AccessoriesDetail from "../pages/Accessories/AccessoriesDetail";
+import Search from "../pages/Search/Search";
 import Checkout from "../pages/Checkout/Checkout";
 import About from "../pages/About/About";
 
