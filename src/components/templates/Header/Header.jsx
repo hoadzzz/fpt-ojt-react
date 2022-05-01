@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import SearchBox from '../../organisms/SearchBox/SearchBox'
 
 import logo from '../../../assets/images/Logo-2.png'
 import './Header.css'
@@ -53,6 +54,7 @@ const Header = () => {
                     <Link to="/">
                         <img src={logo} alt="" />
                     </Link>
+
                 </div>
                 <div className="header__menu">
                     <div className="header__menu__mobile-toggle" onClick={menuToggle}>
@@ -78,15 +80,7 @@ const Header = () => {
                     </div>
                     <div className="header__menu__right">
                         <div className="header__menu__item header__menu__right__item">
-                            {/* <Link to="/search">
-                                <i className="bx bx-search"></i>
-                            </Link> */}
-
-                            <div className="search-box">
-                                <input type="text" id="search" placeholder="Search..."></input>
-                                <button><i className="bx bx-search"></i></button>
-                            </div>    
-
+                            <SearchBox />
                         </div>
                         <div className="header__menu__item header__menu__right__item">
                             <Link to="/cart">
