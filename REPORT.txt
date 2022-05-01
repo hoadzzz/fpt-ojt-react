@@ -18,4 +18,4 @@ Functions:
     HoaLM5: Search, Sort Product
     MinhN4: Update Cart, Switch theme(Redux toolkit)
 
-Link Demo:  
+Link Demo:  https://ojt-react.web.app/
