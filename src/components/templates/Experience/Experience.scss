@@ -13,7 +13,7 @@
     align-items: center;
 }
 
-.circle {
+.e-circle {
     width: 5rem;
     height: 5rem;
     background-color: white;
@@ -27,7 +27,7 @@
     margin-bottom: 2rem;
 }
 
-.circle::before {
+.e-circle::before {
     border-radius: 100%;
     content: '';
     background-image: linear-gradient(to bottom, #87e6fb 0%, #ddc05c 100%);

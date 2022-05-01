@@ -46,7 +46,10 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <Button size="block">Đặt hàng</Button>
+            <Link to='/checkout'>
+              <Button size="block">Đặt hàng</Button>
+            </Link>
+
             <Link to="/catalog">
               <Button size="block">Tiếp tục mua hàng</Button>
             </Link>
