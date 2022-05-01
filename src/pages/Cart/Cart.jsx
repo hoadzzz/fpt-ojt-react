@@ -10,8 +10,6 @@ import Button from "../../components/atoms/Button/Button";
 import productData from "../../assets/fake-data/products";
 import numberWithCommas from "../../utils/numberWithCommas";
 
-import "./Cart.css";
-
 const Cart = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
 

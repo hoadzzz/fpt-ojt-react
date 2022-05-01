@@ -1,40 +1,48 @@
-import React from 'react'
-import './SaleCard.css'
+import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
+import { themeContext } from "../../../Context";
+import numberWithCommas from "../../../utils/numberWithCommas";
 
 const SaleCard = (props) => {
+    const theme = useContext(themeContext);
+    const darkMode = theme.state.darkMode;
     return (
-        <div class="product_card">
+        <div className="product_card">
             <Link to={`/catalog/${props.slug}`}>
-            <div className="product-card__image">
-                <img src={props.img01} alt=""/>
-                <img src={props.img02} alt="" />
-            </div>
+                <div className="product-card__image"
+                    style={{
+                        color: darkMode ? "white" : "#333333",
+                    }}>
+                    <img src={props.img01} alt="" />
+                    <img src={props.img02} alt="" />
+                </div>
             </Link>
             <div className='detail'>
-                <p class="offer">
+                <p className="offer">
                     <img src="https://cdn.tgdd.vn/2020/10/content/icon1-50x50.png" alt="Giảm sốc" width="20"
                         height="20" />
-                    <span class="span">Giảm sốc</span>
+                    <span className="span">Giảm sốc</span>
                 </p>
-                <h3 class="name">
+                <h3 className="name">
                     {props.name}
                 </h3>
-                <p class="status">Online giá rẻ</p>
-                <div>
-                    <p class="price">{props.price + props.price * 0.4}</p>
-                    <span class="percent"> -40%</span>
+                <p className="status">Online giá rẻ</p>
+                <div style={{
+                    color: darkMode ? "white" : "#666",
+                }}>
+                    <p className="price" >{numberWithCommas(props.price + props.price * 0.4)}</p>
+                    <span className="percent"> -40%</span>
                 </div>
-                <strong class="sale">{props.price}</strong>
+                <strong className="sale">{numberWithCommas(props.price)}</strong>
                 <div>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>
                     <span><FontAwesomeIcon icon={faStar} style={{ color: '#ffa500' }} /></span>
                     <span><FontAwesomeIcon icon={faStarHalf} style={{ color: '#ffa500' }} /></span>
-                    <p class="item-rating-total">75</p>
+                    <p className="item-rating-total">75</p>
                 </div>
             </div>
         </div>
