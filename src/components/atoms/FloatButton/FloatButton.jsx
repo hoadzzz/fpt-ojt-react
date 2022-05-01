@@ -3,11 +3,12 @@ import 'react-tiny-fab/dist/styles.css';
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus, faCircleInfo, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const mainButtonStyles = {
     backgroundColor: 'var(--blue)',
-    width:'50px',
-    height:'50px'
+    width: '50px',
+    height: '50px'
 };
 
 const actionButtonStyles = {
@@ -37,24 +38,17 @@ const FloatButton = () => {
             actionButtonStyles={actionButtonStyles}
             style={style}
             icon={<FontAwesomeIcon icon={faCirclePlus} style={iconStyles}></FontAwesomeIcon>}
-            //event={event}
             alwaysShowTitle={true}
-        //onClick={someFunctionForTheMainButton}
         >
-
             <Action
                 text="About us"
-                style={actionButtonStyles}
-            // onClick={handleEmailOnClick}
-            >
-                <FontAwesomeIcon icon={faCircleInfo} style={iconStyles}></FontAwesomeIcon>
+                style={actionButtonStyles}>
+                <Link to='/about'><FontAwesomeIcon icon={faCircleInfo} style={iconStyles}></FontAwesomeIcon></Link>
             </Action>
+
             <Action
                 text="Help"
-                style={actionButtonStyles}
-
-            //  onClick={handleHelpOnClick}
-            >
+                style={actionButtonStyles}>
                 <FontAwesomeIcon icon={faCircleQuestion} style={iconStyles}></FontAwesomeIcon>
             </Action>
         </Fab>

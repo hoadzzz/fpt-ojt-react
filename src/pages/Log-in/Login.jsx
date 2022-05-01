@@ -27,7 +27,7 @@ const Login = () => {
                         <Button size="sm">Đăng kí</Button>
                     </Link>
                     <p className="forgot-password text-right">
-                        Forgot <a href="#">password?</a>
+                        Forgot <a href="/#">password?</a>
                     </p>
                 </form>
             </div>

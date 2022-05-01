@@ -12,6 +12,7 @@ import Signup from "../pages/Sign-up/Signup";
 import Accessories from "../pages/Accessories/Accessories";
 import AccessoriesDetail from "../pages/Accessories/AccessoriesDetail";
 import Checkout from "../pages/Checkout/Checkout";
+import About from "../pages/About/About";
 
 const Routes = () => {
   return (
@@ -26,6 +27,7 @@ const Routes = () => {
       <Route path="/accessories" component={Accessories} />
       <Route path="/accessories/:slug" component={AccessoriesDetail} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/about" component={About} />
     </Switch>
   );
 };

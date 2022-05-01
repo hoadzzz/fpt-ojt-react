@@ -15,17 +15,17 @@ const Layout = () => {
         <BrowserRouter>
             <Route render={props => (
                 <div>
-                    <Header {...props}/>
+                    <Header {...props} />
                     <div className="container">
                         <div className="main">
-                            <Routes/>
+                            <Routes />
                         </div>
                     </div>
-                    <FloatButton/>
-                    <Footer/>
-                    <ProductViewModal/>
+                    <FloatButton />
+                    <Footer />
+                    <ProductViewModal />
                 </div>
-            )}/>
+            )} />
         </BrowserRouter>
     )
 }
