@@ -7,7 +7,7 @@ const Login = () => {
         <div className='login_frame'>
             <div className="login">
                 <form>
-                    <h3>Sign In</h3>
+                    <h3 className="title-signup">Sign In</h3>
                     <div className="form-group">
                         <label>Email address</label>
                         <input type="email" className="form-control" placeholder="Enter email" />

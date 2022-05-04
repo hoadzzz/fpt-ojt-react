@@ -140,9 +140,6 @@ const Home = () => {
             {/* banner */}
             <Section>
                 <SectionBody>
-                    {/* <Link to="/catalog">
-                        <img src={banner} alt="" />
-                    </Link> */}
                     <Banner />
                 </SectionBody>
             </Section>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Button from '../../components/atoms/Button/Button'
 
 const Signup = () => {
@@ -25,7 +26,7 @@ const Signup = () => {
                     </div>
                     <Button size="sm">Đăng Kí</Button>
                     <p className="forgot-password text-right">
-                        Already registered <a href="/#">sign in?</a>
+                        Already registered <Link to="/login">sign in?</Link>
                     </p>
                 </form>
             </div>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import productData from "../../../assets/fake-data/products";
 import { Link, useHistory } from "react-router-dom";
-import './SearchBox.css'
 
 const SearchBox = () => {
     const history = useHistory();
@@ -25,7 +24,7 @@ const SearchBox = () => {
     }, []);
 
     const handleEnter = (e) => {
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             history.push(`/search`);
         }
         
