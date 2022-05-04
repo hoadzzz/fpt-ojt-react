@@ -3,12 +3,10 @@ import productsData from "../../assets/fake-data/products";
 import SearchBox from "../../components/organisms/SearchBox/SearchBox";
 
 const Search = () => {
-    
+    const searchList = SearchBox().
 
     return (
         <div>
-            <div>
-            </div>
         </div>
 
     )
