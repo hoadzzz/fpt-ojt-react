@@ -40,6 +40,13 @@ const StyledMethodPayMent = styled(Box)(() => ({
   alignItems: "center",
 }));
 
+
+const styleInput = {
+  color: 'var(--blue)',
+  backgroundColor: 'white',
+  borderRadius: '5px',
+  fontSize: '16px', paddingLeft: '5px', paddingRight: '5px'
+}
 const paymentMethods = [
   {
     value: "VNPAY-QR",
@@ -58,6 +65,10 @@ const paymentMethods = [
     image: "https://bizweb.dktcdn.net/assets/admin/images/logomm1.png?v=1",
   },
 ];
+
+const style = {
+  backgroundColor: "white"
+};
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cartItems.value);
@@ -95,6 +106,7 @@ const Checkout = () => {
               type="text"
               className="form-control"
               placeholder="Họ và tên"
+              style={{ fontSize: '16px' }}
             />
           </div>
           <div className="form-group">
@@ -102,10 +114,11 @@ const Checkout = () => {
               type="text"
               className="form-control"
               placeholder="Số điện thoại"
+              style={{ fontSize: '16px' }}
             />
           </div>
-          <FormControl sx={{ m: "15px 0px" }} fullWidth>
-            <InputLabel id="demo-simple-select-label">Tỉnh thành</InputLabel>
+          <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
+            <InputLabel id="demo-simple-select-label" className="c-inputLabel" style={styleInput}>Tỉnh thành</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -126,8 +139,8 @@ const Checkout = () => {
               ))}
             </Select>
           </FormControl>
-          <FormControl sx={{ m: "15px 0px" }} fullWidth>
-            <InputLabel id="address-district">Quận huyện</InputLabel>
+          <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
+            <InputLabel id="address-district" style={styleInput}>Quận huyện</InputLabel>
             <Select
               value={location.address.district}
               name="district"
@@ -146,8 +159,8 @@ const Checkout = () => {
               ))}
             </Select>
           </FormControl>
-          <FormControl sx={{ m: "15px 0px" }} fullWidth>
-            <InputLabel id="address-ward">Phường xã</InputLabel>
+          <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
+            <InputLabel id="address-ward" style={styleInput}>Phường xã</InputLabel>
             <Select
               name="ward"
               labelId="address-ward"
@@ -209,6 +222,7 @@ const Checkout = () => {
                       value={item.value}
                       control={<Radio />}
                       label={item.label}
+                      style={{ fontSize: '16px' }}
                     />
                     <img src={item.image} alt="" height="auto" width="52" />
                   </StyledMethodPayMent>
