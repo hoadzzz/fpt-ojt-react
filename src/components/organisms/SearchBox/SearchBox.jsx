@@ -55,7 +55,7 @@ const SearchBox = () => {
                         return (
                             <Link to={`/catalog/${product.slug}`}>
                                 <div className="item" key={key}>
-                                    <div className="item-img"><img src={product.image02}></img></div>
+                                    <div className="item-img"><img src={product.image02} alt="/#"></img></div>
                                     <div className="item-title">{product.title}</div>
                                 </div>
                             </Link>
