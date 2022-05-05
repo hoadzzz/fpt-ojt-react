@@ -29,8 +29,12 @@ const Routes = () => {
       <Route path="/accessories/:slug" component={AccessoriesDetail} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/about" component={About} />
+<<<<<<< HEAD
       <Route path="/search" component={Search} />
 
+=======
+      <Route path="/search/:keyword" component={Search} />
+>>>>>>> a0ea5ef9e5c3c3160299fce5c8d8524a7b6f6bb3
     </Switch>
   );
 };

@@ -88,7 +88,7 @@ const Header = () => {
                     </div>
                     <div className="header__menu__right">
                         <div className="header__menu__item header__menu__right__item">
-                            <SearchBox />
+                            <form><SearchBox /></form>
                         </div>
                         <div className="header__menu__item header__menu__right__item">
                             <Link to="/cart">
