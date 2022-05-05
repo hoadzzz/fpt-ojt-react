@@ -22,7 +22,9 @@ const Login = () => {
                             <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                         </div>
                     </div>
-                    <Button size="sm" >Đăng nhập</Button>
+                    <Link to="/login">
+                        <Button size="sm" >Đăng nhập</Button>
+                    </Link>
                     <Link to="/signup">
                         <Button size="sm">Đăng kí</Button>
                     </Link>
