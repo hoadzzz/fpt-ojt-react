@@ -1,13 +1,17 @@
 import React from 'react';
 import Helmet from "../../components/templates/Helmet/Helmet";
+import Button from "../../components/atoms/Button/Button";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { set } from "../../redux/product-modal/productModalSlice";
 import productsData from "../../assets/fake-data/products";
 
 const Search = (props) => {
     const keyword = props.match.params.keyword;
     const products = productsData.getAllProducts().filter(product => {
         return product.title.toLowerCase().includes(keyword.toLowerCase());
-    })
+    });
+    const dispatch = useDispatch();
 
     return (
         <Helmet title="Tìm Kiếm">
@@ -33,12 +37,14 @@ const Search = (props) => {
                                 </div>
                             </div>
                             <div className="search-item-btn">
-                                <button
-                                    className="btn-buy"
-
+                                <Button
+                                    size="sm"
+                                    icon="bx bx-cart"
+                                    animate={true}
+                                    onClick={() => dispatch(set(product.slug))}
                                 >
-                                    Mua ngay
-                                </button>
+                                    chọn mua
+                                </Button>
                             </div>
                         </div>
                     )
