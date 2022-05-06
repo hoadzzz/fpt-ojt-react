@@ -1,110 +1,177 @@
-import React, { useRef, useEffect, useContext } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import SearchBox from '../../organisms/SearchBox/SearchBox'
+import React, { useRef, useEffect, useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import SearchBox from "../../organisms/SearchBox/SearchBox";
 
-import logo from '../../../assets/images/Logo-2.png'
-import Toggle from '../../atoms/Toggle/Toggle'
+import logo from "../../../assets/images/Logo-2.png";
+import Toggle from "../../atoms/Toggle/Toggle";
 import { themeContext } from "../../../Context";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { logout } from "../../../redux/user/userSlice";
+import { logout as logoutFireBase } from "../../../firebase";
+
 const mainNav = [
-    {
-        display: "Trang chủ",
-        path: "/"
-    },
-    {
-        display: "Sản phẩm",
-        path: "/catalog"
-    },
-    {
-        display: "Phụ kiện",
-        path: "/accessories"
-    },
-    {
-        display: "Liên hệ",
-        path: "/contact"
-    }
-]
+  {
+    display: "Trang chủ",
+    path: "/",
+  },
+  {
+    display: "Sản phẩm",
+    path: "/catalog",
+  },
+  {
+    display: "Phụ kiện",
+    path: "/accessories",
+  },
+  {
+    display: "Liên hệ",
+    path: "/contact",
+  },
+];
 
 const Header = () => {
-    const theme = useContext(themeContext);
-    const darkMode = theme.state.darkMode;
+  const user = useSelector((state) => state.user.value);
 
-    const { pathname } = useLocation()
-    const activeNav = mainNav.findIndex(e => e.path === pathname)
+  console.log(user);
 
-    const headerRef = useRef(null)
+  const theme = useContext(themeContext);
+  const darkMode = theme.state.darkMode;
 
-    useEffect(() => {
-        window.addEventListener("scroll", () => {
-            if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-                headerRef.current.classList.add('shrink')
-            } else {
-                headerRef.current.classList.remove('shrink')
-            }
-        })
-        return () => {
-            window.removeEventListener("scroll")
-        };
-    }, []);
+  const { pathname } = useLocation();
+  const activeNav = mainNav.findIndex((e) => e.path === pathname);
 
-    const menuLeft = useRef(null)
+  const headerRef = useRef(null);
 
-    const menuToggle = () => menuLeft.current.classList.toggle('active')
+  const dispatch = useDispatch();
 
-    return (
-        <div className="header" ref={headerRef} style={{
-            background: darkMode ? "var(--purple)" : "white",
-        }}>
-            <div className="container">
-                <div className="header__logo">
-                    <Link to="/">
-                        <img src={logo} alt="" />
-                    </Link>
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (
+        document.body.scrollTop > 80 ||
+        document.documentElement.scrollTop > 80
+      ) {
+        headerRef.current.classList.add("shrink");
+      } else {
+        headerRef.current.classList.remove("shrink");
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll");
+    };
+  }, []);
 
-                </div>
-                <div className="header__menu">
-                    <div className="header__menu__mobile-toggle" onClick={menuToggle}>
-                        <i className='bx bx-menu-alt-left'></i>
-                    </div>
-                    <div className="header__menu__left" ref={menuLeft}>
-                        <div className="header__menu__left__close" onClick={menuToggle}>
-                            <i className='bx bx-chevron-left'></i>
-                        </div>
-                        {
-                            mainNav.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`header__menu__item header__menu__left__item ${index === activeNav ? 'active' : ''}`}
-                                    onClick={menuToggle}
-                                >
-                                    <Link to={item.path}>
-                                        <span>{item.display}</span>
-                                    </Link>
-                                </div>
-                            ))
-                        }
-                        <div className="header__menu__item header__menu__left__item">
-                            <Toggle />
-                        </div>
-                    </div>
-                    <div className="header__menu__right">
-                        <div className="header__menu__item header__menu__right__item">
-                            <form><SearchBox /></form>
-                        </div>
-                        <div className="header__menu__item header__menu__right__item">
-                            <Link to="/cart">
-                                <i className="bx bx-shopping-bag"></i>
-                            </Link>
-                        </div>
-                        <div className="header__menu__item header__menu__right__item">
-                            <Link to="/login">
-                                <i className="bx bx-user"></i>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  const menuLeft = useRef(null);
+
+  const menuToggle = () => menuLeft.current.classList.toggle("active");
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const logoutHandler = () => {
+    logoutFireBase();
+    dispatch(logout());
+  };
+
+  return (
+    <div
+      className="header"
+      ref={headerRef}
+      style={{
+        background: darkMode ? "var(--purple)" : "white",
+      }}
+    >
+      <div className="container">
+        <div className="header__logo">
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
         </div>
-    )
-}
+        <div className="header__menu">
+          <div className="header__menu__mobile-toggle" onClick={menuToggle}>
+            <i className="bx bx-menu-alt-left"></i>
+          </div>
+          <div className="header__menu__left" ref={menuLeft}>
+            <div className="header__menu__left__close" onClick={menuToggle}>
+              <i className="bx bx-chevron-left"></i>
+            </div>
+            {mainNav.map((item, index) => (
+              <div
+                key={index}
+                className={`header__menu__item header__menu__left__item ${
+                  index === activeNav ? "active" : ""
+                }`}
+                onClick={menuToggle}
+              >
+                <Link to={item.path}>
+                  <span>{item.display}</span>
+                </Link>
+              </div>
+            ))}
+            <div className="header__menu__item header__menu__left__item">
+              <Toggle />
+            </div>
+          </div>
+          <div className="header__menu__right">
+            <div className="header__menu__item header__menu__right__item">
+              <form>
+                <SearchBox />
+              </form>
+            </div>
+            <div className="header__menu__item header__menu__right__item">
+              <Link to="/cart">
+                <i className="bx bx-shopping-bag"></i>
+              </Link>
+            </div>
+            <div className="header__menu__item header__menu__right__item">
+              {/* {!user && (
+                <Link to="/login">
+                  <i className="bx bx-user"></i>
+                </Link>
+              )} */}
+              <div onClick={handleMenu} className="header__menu__item__icon">
+                <i className="bx bx-user"></i>
+              </div>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+                {user ? (
+                  <MenuItem onClick={logoutHandler}>Logout</MenuItem>
+                ) : (
+                  <MenuItem>
+                    <Link to="/login">Login</Link>
+                  </MenuItem>
+                )}
+              </Menu>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default Header
+export default Header;

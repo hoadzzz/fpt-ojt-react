@@ -103,3 +103,12 @@ img {
 .grid {
     display: grid;
 }
+
+.form-message {
+    margin: 10px 0;
+    font-weight: 400;
+
+    &--error {
+        color: red;
+    }
+}
