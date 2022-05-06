@@ -1,13 +1,19 @@
 .signup_frame{
     margin-top: calc(70px * 1);
     padding-top: 40px;
+    background: url(../../assets/images/background/bg_login.jpg);
+    height: 100%;
+    margin: calc(70px * 1) -50px 0;
+    height: calc(100vh - 40px);
+    color: #000;
 }
 .signup {
     width: 60%;
     margin: 0 auto;
-    border: 1px solid rgb(123, 130, 221);
     border-radius: 10px;
     padding: 10px 10px;
+    background: white;
+
 }
 
 .signup form {

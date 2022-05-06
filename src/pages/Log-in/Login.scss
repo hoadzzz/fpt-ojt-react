@@ -1,11 +1,17 @@
 .login_frame{
+    color: #000;
     margin-top: calc(70px * 1);
     padding-top: 40px;
+    height: 100%;
+    margin: calc(70px * 1) -50px 0;
+    height: calc(100vh - 40px);
+    background: url(../../assets/images/background/bg_login.jpg);
+
 }
 .login {
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
-    border: 1px solid rgb(123, 130, 221);
+    background: white;
     border-radius: 10px;
     padding: 10px 10px;
 }
@@ -17,4 +23,10 @@
 .login-title {
     font-size: 30px;
     margin-bottom: 20px;
+}
+
+.login-button{
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
