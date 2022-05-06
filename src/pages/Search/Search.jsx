@@ -33,7 +33,12 @@ const Search = (props) => {
                                 </div>
                             </div>
                             <div className="search-item-btn">
-                                <button className="btn-buy">Mua ngay</button>
+                                <button
+                                    className="btn-buy"
+
+                                >
+                                    Mua ngay
+                                </button>
                             </div>
                         </div>
                     )
