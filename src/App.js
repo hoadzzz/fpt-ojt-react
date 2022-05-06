@@ -1,12 +1,11 @@
-import "./App.css";
-import { store } from "./redux/store";
+import { useContext } from "react";
 import { Provider } from "react-redux";
+import "./App.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
-
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
 import Layout from "./components/templates/Layout/Layout";
-import { themeContext } from './Context'
-import { useContext } from "react";
+import { themeContext } from './Context';
+import { store } from "./redux/store";
 
 function App() {
   const theme = useContext(themeContext);

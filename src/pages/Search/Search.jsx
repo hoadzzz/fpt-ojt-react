@@ -1,10 +1,10 @@
 import React from 'react';
-import Helmet from "../../components/templates/Helmet/Helmet";
-import Button from "../../components/atoms/Button/Button";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { set } from "../../redux/product-modal/productModalSlice";
+import { Link } from "react-router-dom";
 import productsData from "../../assets/fake-data/products";
+import Button from "../../components/atoms/Button/Button";
+import Helmet from "../../components/templates/Helmet/Helmet";
+import { set } from "../../redux/product-modal/productModalSlice";
 
 const Search = (props) => {
     const keyword = props.match.params.keyword;
@@ -32,7 +32,7 @@ const Search = (props) => {
                                 <div className="search-item-price">
                                     Giá: {product.price} đ
                                 </div>
-                                <div className="search-item-description">
+                                <div className="search-item-description" >
                                     {product.description}
                                 </div>
                             </div>
