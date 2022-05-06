@@ -1,12 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD
-//import productsData from "../../assets/fake-data/products";
-//import SearchBox from "../../components/organisms/SearchBox/SearchBox";
-=======
 import Helmet from "../../components/templates/Helmet/Helmet";
 import { Link } from "react-router-dom";
 import productsData from "../../assets/fake-data/products";
->>>>>>> a0ea5ef9e5c3c3160299fce5c8d8524a7b6f6bb3
 
 const Search = (props) => {
     const keyword = props.match.params.keyword;
