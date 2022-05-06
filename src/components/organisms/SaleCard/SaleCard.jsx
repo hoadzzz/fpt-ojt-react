@@ -10,7 +10,7 @@ const SaleCard = (props) => {
     const darkMode = theme.state.darkMode;
     return (
         <div className="product_card">
-            <Link to={`/catalog/${props.slug}`}>
+            <Link to={`/catalog/${props.type}/${props.slug}`}>
                 <div className="product-card__image"
                     style={{
                         color: darkMode ? "white" : "#333333",

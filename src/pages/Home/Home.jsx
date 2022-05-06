@@ -71,6 +71,7 @@ const Home = () => {
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
+                                    type='product'
                                 />
                             ))
                         }
@@ -100,7 +101,7 @@ const Home = () => {
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
-                                />
+                                    type='product'                      />
                             ))
                         }
                     </Grid>
@@ -129,6 +130,7 @@ const Home = () => {
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
+                                    type='product'
                                 />
                             ))
                         }
@@ -166,6 +168,7 @@ const Home = () => {
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
+                                    type='product'
                                 />
                             ))
                         }

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import bannerData from "../../../assets/fake-data/banner";
 
 const Banner = () => {
@@ -15,7 +15,7 @@ const Banner = () => {
         return () => {
             window.clearTimeout(changeTo);
         }
-    }, [])
+    }, [changeTo])
 
     useEffect(() => {
         runAutochangeTO();
@@ -25,12 +25,12 @@ const Banner = () => {
         }, 0);
     }, [change]);
 
-    const runAutochangeTO = () => {
-        changeTo = setTimeout(() => {
+    const runAutochangeTO = useCallback(() => {
+        setTimeout(() => {
             changeSlides(1);
             runAutochangeTO();
         }, autoChangeTime)
-    }
+    }, []);
 
     const changeSlides = (step) => {
         window.clearTimeout(changeTo);

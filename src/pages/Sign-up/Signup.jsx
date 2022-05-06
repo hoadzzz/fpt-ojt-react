@@ -1,14 +1,20 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Button from "../../components/atoms/Button/Button";
+import { Button as ButtonMUI } from "@mui/material";
 import { useFormik } from "formik";
-import * as yup from "yup";
-
-import { auth, logout, registerWithEmailAndPassword } from "../../firebase";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { login } from "../../redux/user/userSlice";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import * as yup from "yup";
+import Button from "../../components/atoms/Button/Button";
+import { auth, registerWithEmailAndPassword } from "../../firebase";
+import { login } from "../../redux/user/userSlice";
+import { styled } from "@mui/material/styles";
+
+const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
+  padding: theme.spacing(2),
+  marginTop: "10px",
+  marginBottom: "10px",
+}));
 
 const initialValues = {
   firstName: "",
@@ -40,8 +46,6 @@ const Signup = () => {
     initialValues,
     validationSchema,
   });
-
-  const dispatch = useDispatch();
 
   const [user] = useAuthState(auth);
 
@@ -130,11 +134,18 @@ const Signup = () => {
             {formik.touched.password && formik.errors.password}
           </p>
         </div>
-        <Button size="sm" onClick={handleSubmitForm}>
+        {/* <Button size="sm" onClick={handleSubmitForm}>
           Đăng Kí
-        </Button>
+        </Button> */}
+        <StyledButtonMUI
+          variant="contained"
+          fullWidth
+          onClick={handleSubmitForm}
+        >
+          Đăng Kí
+        </StyledButtonMUI>
         <p className="forgot-password text-right">
-          Already registered <Link to="/login">sign in?</Link>
+          Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
         </p>
       </div>
     </div>

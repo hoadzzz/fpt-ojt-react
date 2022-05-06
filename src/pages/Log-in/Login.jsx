@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
-import Button from "../../components/atoms/Button/Button";
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { Box, Typography } from "@mui/material";
-import { Button as ButtonMUI } from "@mui/material";
+import { Box, Button as ButtonMUI, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useHistory } from "react-router-dom";
-
-import { auth, signInWithGoogle } from "../../firebase";
-
-import { useAuthState } from "react-firebase-hooks/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useFormik } from "formik";
+import React, { useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import * as yup from "yup";
+import { auth, signInWithGoogle } from "../../firebase";
 import { login } from "../../redux/user/userSlice";
+
+
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
   padding: theme.spacing(2),
@@ -141,7 +138,7 @@ const Login = () => {
           {/* <p className="forgot-password text-right">Forgot your password?</p> */}
 
           <Box textAlign="center">
-            <Typography variant="h5" component="p">
+            <Typography variant="h6" component="p">
               or
             </Typography>
             <StyledButtonMUI

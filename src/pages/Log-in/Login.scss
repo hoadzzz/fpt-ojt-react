@@ -1,4 +1,5 @@
 .login_frame{
+    color: #000;
     margin-top: calc(70px * 1);
     padding-top: 40px;
     height: 100%;
@@ -10,9 +11,8 @@
 .login {
     width: 50%;
     margin: 0 auto;
-    // border: 1px solid rgb(123, 130, 221);
     background: white;
-    // border-radius: 10px;
+    border-radius: 10px;
     padding: 10px 10px;
 }
 
@@ -23,4 +23,10 @@
 .login-title {
     font-size: 30px;
     margin-bottom: 20px;
+}
+
+.login-button{
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
