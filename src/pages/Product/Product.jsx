@@ -1,20 +1,27 @@
 import React from "react";
-
-import Helmet from "../../components/templates/Helmet/Helmet";
-import Section, {
-  SectionBody,
-  SectionTitle,
-} from "../../components/organisms/Section/Section";
+import accessoriesData from '../../assets/fake-data/accessories';
+import productData from "../../assets/fake-data/products";
 import Grid from "../../components/molecules/Grid/Grid";
 import ProductCard from "../../components/organisms/ProductCard/ProductCard";
+import Section, {
+  SectionBody,
+  SectionTitle
+} from "../../components/organisms/Section/Section";
+import Helmet from "../../components/templates/Helmet/Helmet";
 import ProductView from "../../components/templates/ProductView/ProductView";
 
-import productData from "../../assets/fake-data/products";
+
 
 const Product = (props) => {
-  const product = productData.getProductBySlug(props.match.params.slug);
-
-  const relatedProducts = productData.getProducts(8);
+  let product, relatedProducts;
+  if (props.match.params.type === 'product') {
+    product = productData.getProductBySlug(props.match.params.slug);
+    relatedProducts = productData.getProducts(8);
+  }
+  else {
+    product = accessoriesData.getAccessoryBySlug(props.match.params.slug);
+    relatedProducts = accessoriesData.getAccessories(8);
+  }
 
   React.useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,6 +46,7 @@ const Product = (props) => {
                 name={item.title}
                 price={Number(item.price)}
                 slug={item.slug}
+                type={props.match.params.type}
               />
             ))}
           </Grid>
