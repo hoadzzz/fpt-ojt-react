@@ -9,9 +9,10 @@ import Button from "../../components/atoms/Button/Button";
 
 import productData from "../../assets/fake-data/products";
 import numberWithCommas from "../../utils/numberWithCommas";
+import { cartItemsSelector } from "../../redux/selectors";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cartItems.value);
+  const cartItems = useSelector(cartItemsSelector);
 
   const [cartProducts, setCartProducts] = useState(
     productData.getCartItemsInfo(cartItems)

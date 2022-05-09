@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { logout } from "../../../redux/user/userSlice";
 import { logout as logoutFireBase } from "../../../firebase";
+import { userSelector } from '../../../redux/selectors'
 
 const mainNav = [
   {
@@ -33,7 +34,7 @@ const mainNav = [
 ];
 
 const Header = () => {
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector(userSelector);
 
   console.log(user);
 
@@ -107,9 +108,8 @@ const Header = () => {
             {mainNav.map((item, index) => (
               <div
                 key={index}
-                className={`header__menu__item header__menu__left__item ${
-                  index === activeNav ? "active" : ""
-                }`}
+                className={`header__menu__item header__menu__left__item ${index === activeNav ? "active" : ""
+                  }`}
                 onClick={menuToggle}
               >
                 <Link to={item.path}>
