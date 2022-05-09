@@ -1,12 +1,7 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-  animated,
-  useSpring,
-  config,
-  useSpringRef,
-  useChain,
+  animated, config, useChain, useSpring, useSpringRef
 } from "react-spring";
 
 

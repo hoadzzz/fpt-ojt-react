@@ -3,6 +3,7 @@
     margin-left: 100px;
     padding: 10px;
 }
+
 .search-result {
     width: 80%;
     margin: 0 auto;
@@ -30,7 +31,7 @@
     margin-top: 10px;
 }
 
-.search-item-img  img{
+.search-item-img img {
     max-width: 100%;
     max-height: 100%;
     border-radius: 100px;
@@ -46,11 +47,13 @@
     margin-top: 18px;
     margin-right: 25px;
 }
+
 .search-item-name {
     font-size: 24px;
     color: #000;
     font-weight: 500;
 }
+
 .search-item-price {
     font-size: 18px;
     font-weight: 400;
@@ -63,8 +66,8 @@
     font-size: 18px;
     font-weight: 400;
     overflow: hidden;
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
     color: #000;
 }
 
@@ -73,7 +76,7 @@
     height: 50px;
     margin-top: 35px;
     margin-right: 10px;
-    
+
 }
 
 .btn-buy {

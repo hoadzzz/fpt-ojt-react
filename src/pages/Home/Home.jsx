@@ -1,19 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-import Helmet from '../../components/templates/Helmet/Helmet'
-import HeroSlider from '../../components/templates/HeroSlider/HeroSlider'
-import Section, { SectionTitle, SectionBody } from '../../components/organisms/Section/Section'
-import PolicyCard from '../../components/organisms/PolicyCard/PolicyCard'
-import Grid from '../../components/molecules/Grid/Grid'
-import ProductCard from '../../components/organisms/ProductCard/ProductCard'
-
 import heroSliderData from '../../assets/fake-data/hero-slider'
 import policy from '../../assets/fake-data/policy'
 import productData from '../../assets/fake-data/products'
-
+import Grid from '../../components/molecules/Grid/Grid'
+import PolicyCard from '../../components/organisms/PolicyCard/PolicyCard'
+import ProductCard from '../../components/organisms/ProductCard/ProductCard'
 import SaleCard from '../../components/organisms/SaleCard/SaleCard'
+import Section, { SectionBody, SectionTitle } from '../../components/organisms/Section/Section'
 import Banner from '../../components/templates/Banner/Banner'
+import Helmet from '../../components/templates/Helmet/Helmet'
+import HeroSlider from '../../components/templates/HeroSlider/HeroSlider'
 
 const Home = () => {
     return (
@@ -101,7 +98,7 @@ const Home = () => {
                                     name={item.title}
                                     price={Number(item.price)}
                                     slug={item.slug}
-                                    type='product'                      />
+                                    type='product' />
                             ))
                         }
                     </Grid>

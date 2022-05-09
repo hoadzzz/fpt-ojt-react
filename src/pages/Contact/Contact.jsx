@@ -1,4 +1,4 @@
-import React, { useRef} from "react";
+import React, { useRef } from "react";
 import Button from "../../components/atoms/Button/Button";
 import Grid from "../../components/molecules/Grid/Grid";
 import Helmet from "../../components/templates/Helmet/Helmet";

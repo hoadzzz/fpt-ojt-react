@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
-import { withRouter } from "react-router";
-
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { addItem } from "../../../redux/shopping-cart/cartItemsSlide";
+import { withRouter } from "react-router";
 import { remove } from "../../../redux/product-modal/productModalSlice";
-
-import Button from "../../atoms/Button/Button";
+import { addItem } from "../../../redux/shopping-cart/cartItemsSlide";
 import numberWithCommas from "../../../utils/numberWithCommas";
+import Button from "../../atoms/Button/Button";
 
 const ProductView = (props) => {
   const dispatch = useDispatch();

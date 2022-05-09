@@ -1,14 +1,12 @@
-import React, { useCallback, useState, useEffect, useRef } from "react";
-
-import Helmet from "../../components/templates/Helmet/Helmet";
-import CheckBox from "../../components/atoms/Checkbox/Checkbox";
-
-import productData from "../../assets/fake-data/products";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import category from "../../assets/fake-data/category";
 import colors from "../../assets/fake-data/product-color";
 import size from "../../assets/fake-data/product-size";
+import productData from "../../assets/fake-data/products";
 import Button from "../../components/atoms/Button/Button";
+import CheckBox from "../../components/atoms/Checkbox/Checkbox";
 import InfinityList from "../../components/organisms/InfinityList/InfinityList";
+import Helmet from "../../components/templates/Helmet/Helmet";
 
 const Catalog = () => {
   const initFilter = {

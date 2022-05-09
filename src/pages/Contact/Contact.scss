@@ -4,16 +4,17 @@
     margin-bottom: 20px;
 }
 
-.contact_frame{
+.contact_frame {
     margin-top: calc(70px * -1);
     padding-top: 20px;
 }
+
 .contact {
     background-color: #ccc;
     padding: 20px;
     border-radius: 5px;
     display: flex;
-    
+
 }
 
 .contact__info {
@@ -75,10 +76,10 @@
 }
 
 .contact__form-content textarea.form-control {
- display: block;
- height: 290px;
- resize: none;
- margin-bottom: 10px;
+    display: block;
+    height: 290px;
+    resize: none;
+    margin-bottom: 10px;
 }
 
 .form-group label {
@@ -90,7 +91,7 @@
 }
 
 .form-group .form-control {
-    border-radius: 0!important;
+    border-radius: 0 !important;
     font-size: 14px;
     color: #000;
     height: 40px;
@@ -103,4 +104,3 @@
     display: block;
     height: 100%;
 }
-

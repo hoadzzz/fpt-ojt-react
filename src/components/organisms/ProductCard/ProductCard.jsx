@@ -1,16 +1,11 @@
-import React, { useContext } from "react";
 import PropTypes from "prop-types";
-
-import { Link } from "react-router-dom";
-
+import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-
-import { set } from "../../../redux/product-modal/productModalSlice";
-
-import Button from "../../atoms/Button/Button";
-
-import numberWithCommas from "../../../utils/numberWithCommas";
+import { Link } from "react-router-dom";
 import { themeContext } from "../../../Context";
+import { set } from "../../../redux/product-modal/productModalSlice";
+import numberWithCommas from "../../../utils/numberWithCommas";
+import Button from "../../atoms/Button/Button";
 
 const ProductCard = (props) => {
   const dispatch = useDispatch();

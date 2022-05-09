@@ -10,8 +10,6 @@ import Section, {
 import Helmet from "../../components/templates/Helmet/Helmet";
 import ProductView from "../../components/templates/ProductView/ProductView";
 
-
-
 const Product = (props) => {
   let product, relatedProducts;
   if (props.match.params.type === 'product') {

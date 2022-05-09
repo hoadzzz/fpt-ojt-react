@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
-import Vector1 from '../../../assets/images/intro/Vector1.png';
-import Vector2 from '../../../assets/images/intro/Vector2.png';
+import Facebook from '@iconscout/react-unicons/icons/uil-facebook';
+import Insta from '@iconscout/react-unicons/icons/uil-instagram';
+import Twitter from '@iconscout/react-unicons/icons/uil-twitter';
+import { motion } from 'framer-motion/dist/framer-motion';
+import React, { useContext } from 'react';
 import boy from '../../../assets/images/intro/boy.png';
 import Crown from '../../../assets/images/intro/crown.png';
-import thumbup from '../../../assets/images/intro/thumbup.png'
 import glassesimoji from '../../../assets/images/intro/glassesimoji.png';
-import FloatingDiv from '../../atoms/FloatingDiv/FloatingDiv';
-import Insta from '@iconscout/react-unicons/icons/uil-instagram'
-import Facebook from '@iconscout/react-unicons/icons/uil-facebook'
-import Twitter from '@iconscout/react-unicons/icons/uil-twitter'
+import thumbup from '../../../assets/images/intro/thumbup.png';
+import Vector1 from '../../../assets/images/intro/Vector1.png';
+import Vector2 from '../../../assets/images/intro/Vector2.png';
 import { themeContext } from '../../../Context';
-import { motion } from 'framer-motion/dist/framer-motion';
-import Section, { SectionBody } from '../../organisms/Section/Section';
 import Button from '../../atoms/Button/Button';
+import FloatingDiv from '../../atoms/FloatingDiv/FloatingDiv';
+import Section, { SectionBody } from '../../organisms/Section/Section';
 
 const Intro = () => {
     // Transition

@@ -1,14 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
-
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  updateItem,
-  removeItem,
-} from "../../../redux/shopping-cart/cartItemsSlide";
-
-import numberWithCommas from "../../../utils/numberWithCommas";
 import { Link } from "react-router-dom";
+import {
+  removeItem, updateItem
+} from "../../../redux/shopping-cart/cartItemsSlide";
+import numberWithCommas from "../../../utils/numberWithCommas";
+
+
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -33,10 +32,6 @@ const CartItem = (props) => {
       );
     }
   };
-
-  // const updateCartItem = () => {
-  //     dispatch(updateItem({...item, quantity: quantity}))
-  // }
 
   const removeCartItem = () => {
     console.log("removeCartItem");

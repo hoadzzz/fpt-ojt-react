@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
-
+import React, { useEffect, useRef, useState } from "react";
 import Grid from "../../molecules/Grid/Grid";
 import ProductCard from "../ProductCard/ProductCard";
 

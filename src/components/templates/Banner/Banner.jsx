@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import bannerData from "../../../assets/fake-data/banner";
 
 const Banner = () => {
@@ -30,7 +30,7 @@ const Banner = () => {
             setActiveSlide(0);
             setSliderReady(true);
         }, 0);
-    }, [change,runAutochangeTO]);
+    }, [change, runAutochangeTO]);
 
     const changeSlides = (step) => {
         window.clearTimeout(changeTo);

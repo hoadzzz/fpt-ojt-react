@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 const Button = props => {
 
     const bg = props.backgroundColor ? 'bg-' + props.backgroundColor : 'bg-main'

@@ -1,11 +1,8 @@
-import React, { useContext } from 'react'
-
-import { Link } from 'react-router-dom'
-
-import Grid from '../../molecules/Grid/Grid'
-
-import logo from '../../../assets/images/Logo-2.png'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../../assets/images/Logo-2.png';
 import { themeContext } from "../../../Context";
+import Grid from '../../molecules/Grid/Grid';
 
 const footerAboutLinks = [
     {
