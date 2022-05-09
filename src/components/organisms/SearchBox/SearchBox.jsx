@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
 import productData from "../../../assets/fake-data/products";
+import { Link, useHistory } from "react-router-dom";
 
 const SearchBox = () => {
     const history = useHistory();
@@ -31,7 +31,6 @@ const SearchBox = () => {
     }
 
     const handleRedirect = () => {
-        
     }
 
     return (

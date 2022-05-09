@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   removeItem, updateItem
-} from "../../../redux/shopping-cart/cartItemsSlide";
+} from "../../../redux/shoppingCart/cartItemsSlide";
 import numberWithCommas from "../../../utils/numberWithCommas";
 
 

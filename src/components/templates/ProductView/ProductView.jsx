@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
-import { remove } from "../../../redux/product-modal/productModalSlice";
-import { addItem } from "../../../redux/shopping-cart/cartItemsSlide";
+import { remove } from "../../../redux/productModal/productModalSlice";
+import { addItem } from "../../../redux/shoppingCart/cartItemsSlide";
 import numberWithCommas from "../../../utils/numberWithCommas";
 import Button from "../../atoms/Button/Button";
 

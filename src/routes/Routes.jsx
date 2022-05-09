@@ -11,6 +11,7 @@ import Login from "../pages/Log-in/Login";
 import Product from "../pages/Product/Product";
 import Search from "../pages/Search/Search";
 import Signup from "../pages/Sign-up/Signup";
+import UserProfile from "../pages/UserProfile/UserProfile";
 
 const Routes = () => {
   return (
@@ -26,6 +27,8 @@ const Routes = () => {
       <Route path="/checkout" component={Checkout} />
       <Route path="/about" component={About} />
       <Route path="/search/:keyword" component={Search} />
+      <Route path="/user-profile" component={UserProfile} />
+
     </Switch>
   );
 };
