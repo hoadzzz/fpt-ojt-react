@@ -127,11 +127,6 @@ const Header = () => {
               </Link>
             </div>
             <div className="header__menu__item header__menu__right__item">
-              {/* {!user && (
-                <Link to="/login">
-                  <i className="bx bx-user"></i>
-                </Link>
-              )} */}
               <div onClick={handleMenu} className="header__menu__item__icon">
                 <i className="bx bx-user"></i>
               </div>
@@ -151,7 +146,7 @@ const Header = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem><Link to="/user-profile">My account</Link></MenuItem>
                 {user ? (
                   <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                 ) : (

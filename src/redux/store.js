@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import locationReducer from "./location/locationSlice";
-import productModalReducer from "./product-modal/productModalSlice";
-import cartItemsReducer from "./shopping-cart/cartItemsSlide";
+import productModalReducer from "./productModal/productModalSlice";
+import cartItemsReducer from "./shoppingCart/cartItemsSlide";
 import userReducer from "./user/userSlice";
 
 export const store = configureStore({
