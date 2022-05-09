@@ -1,7 +1,7 @@
-import React, { useContext } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
+import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { themeContext } from "../../../Context";
 import numberWithCommas from "../../../utils/numberWithCommas";
 

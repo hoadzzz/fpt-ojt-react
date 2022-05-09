@@ -1,22 +1,12 @@
 import { initializeApp } from "firebase/app";
 import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
+  createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut
 } from "firebase/auth";
-
 import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
+  addDoc, collection, getDocs, getFirestore,
+  query, where
 } from "firebase/firestore";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBupkqx2QAVBRbjFQ9Apj2iMwLY7MR7yBQ",
@@ -104,3 +94,4 @@ export {
   sendPasswordResetEmail,
   logout,
 };
+

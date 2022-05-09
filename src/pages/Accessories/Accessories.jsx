@@ -5,7 +5,6 @@ import ProductCard from '../../components/organisms/ProductCard/ProductCard'
 import Section, { SectionBody } from '../../components/organisms/Section/Section'
 import Helmet from '../../components/templates/Helmet/Helmet'
 
-
 const Accessories = () => {
     return (
         <Helmet title='Accessories'>

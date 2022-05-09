@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Provider } from "react-redux";
 import "./App.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/boxicons-2.0.7/css/boxicons.min.css";
 import Layout from "./components/templates/Layout/Layout";
 import { themeContext } from './Context';

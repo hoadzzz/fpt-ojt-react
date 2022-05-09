@@ -1,18 +1,15 @@
-import React, { useRef, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
-import SearchBox from "../../organisms/SearchBox/SearchBox";
-
-import logo from "../../../assets/images/Logo-2.png";
-import Toggle from "../../atoms/Toggle/Toggle";
-import { themeContext } from "../../../Context";
-
-import { useDispatch, useSelector } from "react-redux";
-
-import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { logout } from "../../../redux/user/userSlice";
+import MenuItem from "@mui/material/MenuItem";
+import React, { useContext, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../../assets/images/Logo-2.png";
+import { themeContext } from "../../../Context";
 import { logout as logoutFireBase } from "../../../firebase";
-import { userSelector } from '../../../redux/selectors'
+import { userSelector } from '../../../redux/selectors';
+import { logout } from "../../../redux/user/userSlice";
+import Toggle from "../../atoms/Toggle/Toggle";
+import SearchBox from "../../organisms/SearchBox/SearchBox";
 
 const mainNav = [
   {
@@ -35,9 +32,6 @@ const mainNav = [
 
 const Header = () => {
   const user = useSelector(userSelector);
-
-  console.log(user);
-
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
 

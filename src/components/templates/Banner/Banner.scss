@@ -228,7 +228,7 @@ $letterStagger: 0.1s;
                 @for $i from 1 through $numOfParts {
                     #{$partRef}:nth-child(#{$i}) & {
                         $delayOut: ($numOfParts - $i) * $stagger;
-                        $delayIn: $i * $stagger + math.div($animTime, 5);
+                        $delayIn: $i * $stagger +math.div($animTime, 5);
 
                         z-index: $numOfParts - $i;
                         transition-delay: $delayOut;
@@ -270,7 +270,7 @@ $letterStagger: 0.1s;
         top: 50%;
         width: $size;
         height: $size;
-        margin-top: math.div($size,-2);
+        margin-top: math.div($size, -2);
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.4);
         transform: translateX($size*-1);

@@ -1,13 +1,10 @@
 import React from "react";
-
 import { BrowserRouter, Route } from "react-router-dom";
-
-import Header from "../Header/Header";
-import Footer from "../Footer/Footer";
-import ProductViewModal from "../ProductViewModal/ProductViewModal";
-
 import Routes from "../../../routes/Routes";
 import FloatButton from "../../atoms/FloatButton/FloatButton";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import ProductViewModal from "../ProductViewModal/ProductViewModal";
 
 const Layout = () => {
   return (

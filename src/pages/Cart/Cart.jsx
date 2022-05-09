@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import Helmet from "../../components/templates/Helmet/Helmet";
-import CartItem from "../../components/molecules/CartItem/CartItem";
-import Button from "../../components/atoms/Button/Button";
-
 import productData from "../../assets/fake-data/products";
-import numberWithCommas from "../../utils/numberWithCommas";
+import Button from "../../components/atoms/Button/Button";
+import CartItem from "../../components/molecules/CartItem/CartItem";
+import Helmet from "../../components/templates/Helmet/Helmet";
 import { cartItemsSelector } from "../../redux/selectors";
+import numberWithCommas from "../../utils/numberWithCommas";
 
 const Cart = () => {
   const cartItems = useSelector(cartItemsSelector);

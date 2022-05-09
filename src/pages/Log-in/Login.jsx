@@ -10,8 +10,6 @@ import * as yup from "yup";
 import { auth, signInWithGoogle } from "../../firebase";
 import { login } from "../../redux/user/userSlice";
 
-
-
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
   padding: theme.spacing(2),
   marginTop: "12px",

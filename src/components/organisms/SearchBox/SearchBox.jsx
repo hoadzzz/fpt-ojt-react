@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import productData from "../../../assets/fake-data/products";
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
+import productData from "../../../assets/fake-data/products";
 
 const SearchBox = () => {
     const history = useHistory();
