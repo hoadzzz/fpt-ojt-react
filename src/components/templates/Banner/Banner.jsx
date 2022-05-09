@@ -17,20 +17,20 @@ const Banner = () => {
         }
     }, [changeTo])
 
-    useEffect(() => {
-        runAutochangeTO();
-        setTimeout(() => {
-            setActiveSlide(0);
-            setSliderReady(true);
-        }, 0);
-    }, [change]);
-
     const runAutochangeTO = useCallback(() => {
         setTimeout(() => {
             changeSlides(1);
             runAutochangeTO();
         }, autoChangeTime)
     }, []);
+
+    useEffect(() => {
+        runAutochangeTO();
+        setTimeout(() => {
+            setActiveSlide(0);
+            setSliderReady(true);
+        }, 0);
+    }, [change,runAutochangeTO]);
 
     const changeSlides = (step) => {
         window.clearTimeout(changeTo);

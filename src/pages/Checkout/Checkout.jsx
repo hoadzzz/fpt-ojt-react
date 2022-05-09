@@ -1,29 +1,25 @@
-import React, { useState } from "react";
-
-import Helmet from "../../components/templates/Helmet/Helmet";
-
-import Button from "../../components/atoms/Button/Button";
-
-import productData from "../../assets/fake-data/products";
-import { styled } from "@mui/material/styles";
+import Badge from "@mui/material/Badge";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Typography from "@mui/material/Typography";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Select from "@mui/material/Select";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
-
+import Select from "@mui/material/Select";
+import { styled } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import productData from "../../assets/fake-data/products";
+import Button from "../../components/atoms/Button/Button";
+import Helmet from "../../components/templates/Helmet/Helmet";
+import { selectedCity, selectedDistrict, selectedWard } from "../../redux/location/locationSlice";
+import { cartItemsSelector, locationSelector } from '../../redux/selectors.js';
 import numberWithCommas from "../../utils/numberWithCommas";
-
-import { useSelector } from "react-redux";
-import useLocationForm from "../../hooks/useLocationForm";
 
 const StyledCard = styled(Card)(() => ({
   display: "flex",
@@ -71,12 +67,11 @@ const style = {
 };
 
 const Checkout = () => {
-  const cartItems = useSelector((state) => state.cartItems.value);
+  const dispatch = useDispatch();
 
+  const cartItems = useSelector(cartItemsSelector);
+  const location = useSelector(locationSelector);
   const cartProducts = productData.getCartItemsInfo(cartItems);
-
-  const { location, onSelectCity, onSelectDistrict, onSelectWard } =
-    useLocationForm();
 
   const [paymentMethod, setPaymentMethod] = useState("VNPAY-QR");
 
@@ -124,8 +119,7 @@ const Checkout = () => {
               id="demo-simple-select"
               label="Tỉnh thành"
               onChange={(event) => {
-                console.log(event.target.value);
-                onSelectCity(event.target.value);
+                dispatch(selectedCity(event.target.value));
               }}
               value={location.address.city}
             >
@@ -147,7 +141,7 @@ const Checkout = () => {
               labelId="address-district"
               id="address-district"
               label="address-district"
-              onChange={(event) => onSelectDistrict(event.target.value)}
+              onChange={(event) => dispatch(selectedDistrict(event.target.value))}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -167,7 +161,7 @@ const Checkout = () => {
               id="address-ward"
               label="address-district"
               value={location.address.ward}
-              onChange={(event) => onSelectWard(event.target.value)}
+              onChange={(event) => dispatch(selectedWard(event.target.value))}
             >
               <MenuItem value="">
                 <em>None</em>
@@ -217,7 +211,7 @@ const Checkout = () => {
                 onChange={handleChangePaymentMethod}
               >
                 {paymentMethods.map((item, index) => (
-                  <StyledMethodPayMent>
+                  <StyledMethodPayMent key={index}>
                     <FormControlLabel
                       value={item.value}
                       control={<Radio />}

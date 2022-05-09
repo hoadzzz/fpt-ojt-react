@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import ProductView from "../ProductView/ProductView";
-import Button from "../../atoms/Button/Button";
-import { remove } from "../../../redux/product-modal/productModalSlice";
+import React, { useContext, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import productData from "../../../assets/fake-data/products";
-import { useContext } from "react";
 import { themeContext } from "../../../Context";
+import { remove } from "../../../redux/product-modal/productModalSlice";
+import { productSlugSelector } from '../../../redux/selectors';
+import Button from "../../atoms/Button/Button";
+import ProductView from "../ProductView/ProductView";
 
 const ProductViewModal = () => {
-  const productSlug = useSelector((state) => state.productModal.value);
+  const productSlug = useSelector(productSlugSelector);
   const dispatch = useDispatch();
 
   const [product, setProduct] = useState(undefined);

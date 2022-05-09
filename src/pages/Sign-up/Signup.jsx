@@ -1,14 +1,13 @@
 import { Button as ButtonMUI } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
-import Button from "../../components/atoms/Button/Button";
 import { auth, registerWithEmailAndPassword } from "../../firebase";
 import { login } from "../../redux/user/userSlice";
-import { styled } from "@mui/material/styles";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
   padding: theme.spacing(2),
