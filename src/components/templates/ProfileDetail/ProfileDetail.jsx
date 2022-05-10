@@ -41,13 +41,13 @@ const ProfileDetail = () => {
                 </TabList>
 
                 <TabPanels px={3} mt={5}>
-                    <TabPanel>
+                    <TabPanel color='#000'>
                         <AccountSettings />
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel color='#000'>
                         <CompanySettings />
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel color='#000'>
                         <Notifications />
                     </TabPanel>
                 </TabPanels>

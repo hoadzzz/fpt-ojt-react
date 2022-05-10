@@ -7,7 +7,7 @@ import Helmet from '../../components/templates/Helmet/Helmet'
 
 const Accessories = () => {
     return (
-        <Helmet title='Accessories'>
+        <Helmet title='Phụ kiện'>
             <Section>
                 <SectionBody>
                     <Grid

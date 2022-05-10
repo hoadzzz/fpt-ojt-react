@@ -84,7 +84,7 @@ const Checkout = () => {
   );
 
   return (
-    <Helmet title="Checkout">
+    <Helmet title="Thanh toán">
       <Grid container spacing={2} marginTop={15}>
         <Grid item xs={4}>
           <Typography

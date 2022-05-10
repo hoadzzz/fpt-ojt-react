@@ -10,7 +10,7 @@ import { theme } from '../../utils/theme'
 const UserProfile = () => {
     return (
         <ChakraProvider theme={theme}>
-            <Helmet title='userProfile'>
+            <Helmet title='Tài Khoản'>
                 <Cover />
                 <Container display={{ base: 'block', md: 'flex' }} maxW="100%" fontSize='16px'>
                     <Sidebar />

@@ -17,7 +17,7 @@ const Search = (props) => {
     const darkMode = theme.state.darkMode;
 
     return (
-        <Helmet title="Tìm Kiếm" style={{
+        <Helmet title="Tìm kiếm" style={{
             background: darkMode ? 'var(--gray)' : '',
             color: darkMode ? 'white' : 'black'
         }}>

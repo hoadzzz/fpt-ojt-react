@@ -150,7 +150,7 @@ const Header = () => {
                 {user ? (
                   <MenuItem onClick={logoutHandler}>Logout</MenuItem>
                 ) : (
-                  <MenuItem>
+                  <MenuItem >
                     <Link to="/login">Login</Link>
                   </MenuItem>
                 )}

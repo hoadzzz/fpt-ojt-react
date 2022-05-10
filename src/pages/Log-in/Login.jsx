@@ -7,6 +7,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
+import Helmet from "../../components/templates/Helmet/Helmet";
 import { auth, signInWithGoogle } from "../../firebase";
 import { login } from "../../redux/user/userSlice";
 
@@ -72,6 +73,7 @@ const Login = () => {
   };
 
   return (
+    <Helmet title="Đăng nhập">
     <div className="login_frame">
       <div className="login">
         <form>
@@ -153,6 +155,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </Helmet>
   );
 };
 

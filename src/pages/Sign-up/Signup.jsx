@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
+import Helmet from "../../components/templates/Helmet/Helmet";
 import { auth, registerWithEmailAndPassword } from "../../firebase";
 import { login } from "../../redux/user/userSlice";
 
@@ -74,80 +75,82 @@ const Signup = () => {
   }, [user]);
 
   return (
-    <div className="signup_frame">
-      <div className="signup">
-        <h3 className="title-signup">Sign Up</h3>
-        <div className="form-group">
-          <label>First name</label>
-          <input
-            type="text"
-            name="firstName"
-            value={formik.values.firstName}
-            onChange={formik.handleChange}
-            className="form-control"
-            placeholder="First name"
-          />
-          <p className="form-message form-message--error">
-            {formik.touched.firstName && formik.errors.firstName}
-          </p>
-        </div>
-        <div className="form-group">
-          <label>Last name</label>
-          <input
-            type="text"
-            name="lastName"
-            value={formik.values.lastName}
-            onChange={formik.handleChange}
-            className="form-control"
-            placeholder="Last name"
-          />
-          <p className="form-message form-message--error">
-            {formik.touched.lastName && formik.errors.lastName}
-          </p>
-        </div>
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
-            placeholder="Enter email"
-          />
-          <p className="form-message form-message--error">
-            {formik.touched.email && formik.errors.email}
-          </p>
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
-            className="form-control"
-            placeholder="Enter password"
-          />
-          <p className="form-message form-message--error">
-            {formik.touched.password && formik.errors.password}
-          </p>
-        </div>
-        {/* <Button size="sm" onClick={handleSubmitForm}>
+    <Helmet title="Đăng ký">
+      <div className="signup_frame">
+        <div className="signup">
+          <h3 className="title-signup">Sign Up</h3>
+          <div className="form-group">
+            <label>First name</label>
+            <input
+              type="text"
+              name="firstName"
+              value={formik.values.firstName}
+              onChange={formik.handleChange}
+              className="form-control"
+              placeholder="First name"
+            />
+            <p className="form-message form-message--error">
+              {formik.touched.firstName && formik.errors.firstName}
+            </p>
+          </div>
+          <div className="form-group">
+            <label>Last name</label>
+            <input
+              type="text"
+              name="lastName"
+              value={formik.values.lastName}
+              onChange={formik.handleChange}
+              className="form-control"
+              placeholder="Last name"
+            />
+            <p className="form-message form-message--error">
+              {formik.touched.lastName && formik.errors.lastName}
+            </p>
+          </div>
+          <div className="form-group">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              placeholder="Enter email"
+            />
+            <p className="form-message form-message--error">
+              {formik.touched.email && formik.errors.email}
+            </p>
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              className="form-control"
+              placeholder="Enter password"
+            />
+            <p className="form-message form-message--error">
+              {formik.touched.password && formik.errors.password}
+            </p>
+          </div>
+          {/* <Button size="sm" onClick={handleSubmitForm}>
           Đăng Kí
         </Button> */}
-        <StyledButtonMUI
-          variant="contained"
-          fullWidth
-          onClick={handleSubmitForm}
-        >
-          Đăng Kí
-        </StyledButtonMUI>
-        <p className="forgot-password text-right">
-          Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
-        </p>
+          <StyledButtonMUI
+            variant="contained"
+            fullWidth
+            onClick={handleSubmitForm}
+          >
+            Đăng Kí
+          </StyledButtonMUI>
+          <p className="forgot-password text-right">
+            Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
+          </p>
+        </div>
       </div>
-    </div>
+    </Helmet>
   );
 };
 
