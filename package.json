@@ -13,6 +13,7 @@
     "@iconscout/react-unicons": "^1.1.6",
     "@mui/material": "^5.6.2",
     "@reduxjs/toolkit": "^1.8.1",
+    "bootstrap": "^4.1.1",
     "classnames": "^2.3.1",
     "firebase": "^9.7.0",
     "formik": "^2.2.9",

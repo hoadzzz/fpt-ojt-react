@@ -41,7 +41,7 @@ export default function Cover() {
     }
 
     return (
-        <Box h={80} overflow="hidden">
+        <Box h={80} >
             <Image
                 w="full"
                 h="full"

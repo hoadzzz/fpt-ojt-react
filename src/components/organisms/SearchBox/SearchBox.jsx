@@ -27,7 +27,7 @@ const SearchBox = () => {
         if (e.key === 'Enter') {
             history.push(`/search/${e.target.value}`);
         }
-        
+
     }
 
     const handleRedirect = () => {
@@ -36,16 +36,14 @@ const SearchBox = () => {
     return (
         <div className="search-container">
             <div className="search-box">
-                <input 
-                    type="text" 
-                    id="search" 
-                    placeholder="Search..." 
-                    onChange={handleFilter} 
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search..."
+                    onChange={handleFilter}
                     onKeyPress={handleEnter}
                     onKeyUp={handleRedirect}
-                >
-
-                </input>
+                ></input>
                 <button><i className="bx bx-search"></i></button>
             </div>
             {open && (

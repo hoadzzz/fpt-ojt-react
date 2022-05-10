@@ -41,7 +41,7 @@ const Contact = () => {
   };
 
   return (
-    <Helmet title="Contact">
+    <Helmet title="Liên hệ">
       <div className="contact_frame">
         <p className="title">Liên hệ</p>
         <div className="contact-top" >
