@@ -135,9 +135,6 @@ const Signup = () => {
               {formik.touched.password && formik.errors.password}
             </p>
           </div>
-          {/* <Button size="sm" onClick={handleSubmitForm}>
-          Đăng Kí
-        </Button> */}
           <StyledButtonMUI
             variant="contained"
             fullWidth

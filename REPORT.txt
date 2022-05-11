@@ -9,7 +9,7 @@ Components:
     MinhN4: InfinityList, Layout, PolicyCard, ProductCard, ProductViewModal
 
 Pages:
-    DuanML: Homepage, About, Accessories, Catalog
+    DuanML: Homepage, About, Accessories, Catalog, UserProfile
     HoaLM5: Sign-up, Log-in, Product, Search
     MinhN4: Checkout, Cart, Contact 
 
