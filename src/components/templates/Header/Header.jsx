@@ -1,10 +1,11 @@
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import React, { useContext, useEffect, useRef } from "react";
+import Avatar from 'react-avatar';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/Logo-2.png";
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 import { logout as logoutFireBase } from "../../../firebase";
 import { userSelector } from '../../../redux/selectors';
 import { logout } from "../../../redux/user/userSlice";
@@ -128,7 +129,7 @@ const Header = () => {
             </div>
             <div className="header__menu__item header__menu__right__item">
               <div onClick={handleMenu} className="header__menu__item__icon">
-                <i className="bx bx-user"></i>
+                {!user ? (<i className="bx bx-user"></i>) : (<Avatar name={user.name} size="35" round={true} src={user.photoURL}/>)}
               </div>
               <Menu
                 id="menu-appbar"

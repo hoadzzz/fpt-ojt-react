@@ -5,7 +5,7 @@ import productsData from "../../assets/fake-data/products";
 import Button from "../../components/atoms/Button/Button";
 import Helmet from "../../components/templates/Helmet/Helmet";
 import { set } from "../../redux/productModal/productModalSlice";
-import { themeContext } from '../../Context';
+import { themeContext } from '../../context/ThemeContext';
 
 const Search = (props) => {
     const keyword = props.match.params.keyword;

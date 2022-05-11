@@ -2,7 +2,7 @@ import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 import numberWithCommas from "../../../utils/numberWithCommas";
 
 const SaleCard = (props) => {

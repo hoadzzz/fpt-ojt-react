@@ -17,11 +17,15 @@ import {
     useDisclosure,
     VStack,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux'
+import { userSelector } from '../../../redux/selectors'
 
 const avatar = require("../../../assets/images/avatar.png").default
 
 function UserAvatar() {
-    const [userProfile, setUserProfile] = useState(null)
+    const user = useSelector(userSelector);
+
+    const [userProfile, setUserProfile] = useState(user == null ? null : user.photoURL)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const profileImage = useRef(null)
@@ -92,7 +96,7 @@ function UserAvatar() {
             </Modal>
             <VStack spacing={1}>
                 <Heading as="h3" fontSize="xl" color="brand.dark">
-                    Scolt Lee
+                    {user != null ? user.name : 'Scolt Lee'}
                 </Heading>
                 <Text color="brand.gray" fontSize="sm">
                     CEO of FPT

@@ -9,7 +9,7 @@ import glassesimoji from '../../../assets/images/intro/glassesimoji.png';
 import thumbup from '../../../assets/images/intro/thumbup.png';
 import Vector1 from '../../../assets/images/intro/Vector1.png';
 import Vector2 from '../../../assets/images/intro/Vector2.png';
-import { themeContext } from '../../../Context';
+import { themeContext } from '../../../context/ThemeContext';
 import Button from '../../atoms/Button/Button';
 import FloatingDiv from '../../atoms/FloatingDiv/FloatingDiv';
 import Section, { SectionBody } from '../../organisms/Section/Section';

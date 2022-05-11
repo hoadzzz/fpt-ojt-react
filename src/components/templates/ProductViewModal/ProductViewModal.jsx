@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import productData from "../../../assets/fake-data/products";
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 import { remove } from "../../../redux/productModal/productModalSlice";
 import { productSlugSelector } from '../../../redux/selectors';
 import Button from "../../atoms/Button/Button";
