@@ -1,7 +1,7 @@
 import { Box, Button as ButtonMUI, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { collection, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -37,30 +37,39 @@ const Login = () => {
 
   async function handleDispatch() {
     const querySnapshot = await getDocs(collection(db, "users"));
-    let document;
+    let document, countDoc=0;
     querySnapshot.forEach((doc) => {
+      countDoc++;
       if (doc.data().uid == user.uid) {
         document = doc.data();
         if (document != null) {
-          dispatch(login(
-            document
-          ))
-        }
-        else {
           dispatch(login({
-            uid: user.uid,
-            email: user.email,
+            ...document,
             displayName: user.displayName,
             firstName: user.displayName.split(" ")[0],
-            lastName: user.displayName.split(" ")[1],
-            phoneNumber: user.phoneNumber,
+            lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
             photoURL: user.photoURL,
             city: user.city
-          }))
-        };
+          }
+          ))
+        }
       }
     });
-
+    if (document == null) {
+      const data = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        firstName: user.displayName.split(" ")[0],
+        lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
+        phoneNumber: user.phoneNumber,
+        photoURL: user.photoURL,
+        city: ''
+      };
+      
+      setDoc(doc(db, 'users', 'user' + countDoc), data);
+      dispatch(login(data))
+    }
   }
 
   useEffect(() => {
