@@ -1,6 +1,7 @@
 import { Box, Button as ButtonMUI, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { collection, getDoc, getDocs } from "firebase/firestore";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -8,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { auth } from "../../firebase/config";
+import { auth, db } from "../../firebase/config";
 import { signInWithGoogle } from "../../firebase/service";
 import { login } from "../../redux/user/userSlice";
 
@@ -34,18 +35,37 @@ const Login = () => {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
+  async function handleDispatch() {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    let document;
+    querySnapshot.forEach((doc) => {
+      if (doc.data().uid == user.uid) {
+        document = doc.data();
+        if (document != null) {
+          dispatch(login(
+            document
+          ))
+        }
+        else {
+          dispatch(login({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            firstName: user.displayName.split(" ")[0],
+            lastName: user.displayName.split(" ")[1],
+            phoneNumber: user.phoneNumber,
+            photoURL: user.photoURL,
+            city: user.city
+          }))
+        };
+      }
+    });
+
+  }
+
   useEffect(() => {
     if (user) {
-      dispatch(
-        login({
-          name: user.displayName,
-          uid: user.uid,
-          email: user.email,
-          phone: user.phoneNumber,
-          address: user.address,
-          photoURL: user.photoURL
-        })
-      );
+      handleDispatch();
       history.replace("/");
     }
   }, [user]);

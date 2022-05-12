@@ -96,7 +96,7 @@ function UserAvatar() {
             </Modal>
             <VStack spacing={1}>
                 <Heading as="h3" fontSize="xl" color="brand.dark">
-                    {user != null ? user.name : 'Scolt Lee'}
+                    {user != null ? user.displayName: 'Scolt Lee'}
                 </Heading>
                 <Text color="brand.gray" fontSize="sm">
                     CEO of FPT
