@@ -3,7 +3,6 @@ import InputVStack from '../../molecules/InputVStack/InputVStack'
 import Story from '../../molecules/Story/Story'
 import UserAvatar from '../../molecules/UserAvatar/UserAvatar'
 
-
 function Sidebar() {
     return (
         <Box

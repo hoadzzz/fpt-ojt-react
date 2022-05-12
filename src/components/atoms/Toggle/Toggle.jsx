@@ -5,9 +5,10 @@ import { themeContext } from '../../../context/ThemeContext'
 
 const Toggle = () => {
   const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+  let darkMode = theme.state.darkMode;
   const handleClick = () => {
-    theme.dispatch({ type: 'toggle' })
+    localStorage.setItem('darkMode', !darkMode);
+    theme.dispatch({ type: 'toggle' });
   }
   return (
     <div className="toggle" onClick={handleClick}>
