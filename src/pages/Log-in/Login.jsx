@@ -8,7 +8,8 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { auth, signInWithGoogle } from "../../firebase";
+import { auth } from "../../firebase/config";
+import { signInWithGoogle } from "../../firebase/service";
 import { login } from "../../redux/user/userSlice";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
@@ -33,16 +34,6 @@ const Login = () => {
   const [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema,
-    onSubmit: () => {
-      handleSignIn();
-    },
-  });
   useEffect(() => {
     if (user) {
       dispatch(
@@ -58,6 +49,17 @@ const Login = () => {
       history.replace("/");
     }
   }, [user]);
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema,
+    onSubmit: () => {
+      handleSignIn();
+    },
+  });
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(

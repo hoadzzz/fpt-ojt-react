@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/Logo-2.png";
 import { themeContext } from "../../../context/ThemeContext";
-import { logout as logoutFireBase } from "../../../firebase";
+import { logout as logoutFireBase  } from "../../../firebase/service";
 import { userSelector } from '../../../redux/selectors';
 import { logout } from "../../../redux/user/userSlice";
 import Toggle from "../../atoms/Toggle/Toggle";

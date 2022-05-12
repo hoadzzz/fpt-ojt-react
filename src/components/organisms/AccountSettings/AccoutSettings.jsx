@@ -1,6 +1,9 @@
 import { FormControl, FormLabel, Grid, Input, Select } from '@chakra-ui/react'
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../redux/selectors';
+import { db } from '../../../firebase/config';
+import { useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 
 function AccountSettings() {
@@ -12,6 +15,16 @@ function AccountSettings() {
         firstName = userName.substring(userName.indexOf(' '), userName.length);
     }
 
+    useEffect(() => {
+        onSnapshot(collection(db, 'users'), (snapshot) => {
+            const data = snapshot.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id
+            }))
+            console.log({ data })
+        })
+
+    }, [])
     return (
         <Grid
             templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
@@ -39,7 +52,7 @@ function AccountSettings() {
                     focusBorderColor="brand.blue"
                     type="email"
                     placeholder='Enter email'
-                    value={user!=null?user.email:''}
+                    value={user != null ? user.email : ''}
                 />
             </FormControl>
             <FormControl id="city">

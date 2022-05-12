@@ -7,7 +7,8 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { auth, registerWithEmailAndPassword } from "../../firebase";
+import { registerWithEmailAndPassword } from "../../firebase/service";
+import { auth } from "../../firebase/config";
 import { login } from "../../redux/user/userSlice";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
