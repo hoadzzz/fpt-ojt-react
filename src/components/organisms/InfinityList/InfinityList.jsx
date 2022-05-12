@@ -18,7 +18,6 @@ const InfinityList = (props) => {
     setData(props.data.slice(0, perLoad));
     setIndex(1);
   }, [props.data]);
-
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (listRef && listRef.current) {
@@ -61,7 +60,7 @@ const InfinityList = (props) => {
             name={item.title}
             price={Number(item.price)}
             slug={item.slug}
-            type='product'
+            type="product"
           />
         ))}
       </Grid>

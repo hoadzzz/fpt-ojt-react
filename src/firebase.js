@@ -1,12 +1,24 @@
 import { initializeApp } from "firebase/app";
 import {
-  createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut
+  createUserWithEmailAndPassword,
+  getAuth,
+  GoogleAuthProvider,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import {
-  addDoc, collection, getDocs, getFirestore,
-  query, where
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  updateDoc,
+  where,
 } from "firebase/firestore";
-
 
 const firebaseConfig = {
   apiKey: "AIzaSyBupkqx2QAVBRbjFQ9Apj2iMwLY7MR7yBQ",
@@ -84,8 +96,10 @@ const logout = () => {
 };
 
 export {
+  app,
   auth,
   db,
+  getCartFromUser,
   signInWithGoogle,
   signInWithEmailAndPassword,
   logInWithEmailAndPassword,
@@ -94,4 +108,3 @@ export {
   sendPasswordResetEmail,
   logout,
 };
-

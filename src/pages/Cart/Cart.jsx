@@ -5,8 +5,11 @@ import productData from "../../assets/fake-data/products";
 import Button from "../../components/atoms/Button/Button";
 import CartItem from "../../components/molecules/CartItem/CartItem";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { cartItemsSelector } from "../../redux/selectors";
+import { cartItemsSelector, userSelector } from "../../redux/selectors";
 import numberWithCommas from "../../utils/numberWithCommas";
+
+import { getFirestore, collection } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const Cart = () => {
   const cartItems = useSelector(cartItemsSelector);
@@ -18,6 +21,8 @@ const Cart = () => {
   const [totalProducts, setTotalProducts] = useState(0);
 
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const user = useSelector(userSelector);
 
   useEffect(() => {
     setCartProducts(productData.getCartItemsInfo(cartItems));
@@ -44,7 +49,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <Link to='/checkout'>
+            <Link to="/checkout">
               <Button size="block">Đặt hàng</Button>
             </Link>
 

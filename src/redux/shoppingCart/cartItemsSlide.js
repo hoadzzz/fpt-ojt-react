@@ -13,6 +13,15 @@ export const cartItemsSlice = createSlice({
   name: "cartItems",
   initialState,
   reducers: {
+    getCartItem: (state) => {
+      state.loading = true;
+    },
+
+    getCartItemSuccess: (state, action) => {
+      state.value = action.payload;
+      state.loading = false;
+    },
+
     addItem: (state, action) => {
       const newItem = action.payload;
       const duplicate = state.value.filter(
