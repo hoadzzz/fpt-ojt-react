@@ -4,30 +4,11 @@ import {
 import {
   addDoc, collection, getDocs, query, where
 } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/user/userSlice";
 import { auth, db } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
-
-const signInWithGoogle = async () => {
-  try {
-    const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        firstName: user.displayName.split(" ")[0],
-        lastName: user.displayName.split(" ")[1],
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      });
-    }
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
@@ -69,9 +50,10 @@ const logout = () => {
 };
 
 export {
+  googleProvider,
   auth,
   db,
-  signInWithGoogle,
+
   signInWithEmailAndPassword,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
