@@ -1,16 +1,16 @@
 import { Box, Button as ButtonMUI, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { useFormik } from "formik";
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
 import { auth, db } from "../../firebase/config";
-import { signInWithGoogle } from "../../firebase/service";
+import { googleProvider } from "../../firebase/service";
 import { login } from "../../redux/user/userSlice";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
@@ -32,52 +32,46 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const history = useHistory();
-  const [user] = useAuthState(auth);
+  let [user] = useAuthState(auth);
   const dispatch = useDispatch();
 
-  async function handleDispatch() {
-    const querySnapshot = await getDocs(collection(db, "users"));
-    let document, countDoc=0;
-    querySnapshot.forEach((doc) => {
-      countDoc++;
-      if (doc.data().uid == user.uid) {
-        document = doc.data();
-        if (document != null) {
-          dispatch(login({
-            ...document,
-            displayName: user.displayName,
-            firstName: user.displayName.split(" ")[0],
-            lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
-            photoURL: user.photoURL,
-            city: user.city
-          }
-          ))
-        }
-      }
-    });
-    if (document == null) {
-      const data = {
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        firstName: user.displayName.split(" ")[0],
-        lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
-        phoneNumber: user.phoneNumber,
-        photoURL: user.photoURL,
-        city: ''
-      };
-      
-      setDoc(doc(db, 'users', 'user' + countDoc), data);
-      dispatch(login(data))
+  async function handleGoogleSignIn() {
+    const res = await signInWithPopup(auth, googleProvider);
+    if (user == null)
+      user = res.user;
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const docs = await getDocs(q);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      firstName: user.displayName.split(" ")[0],
+      lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
+      phoneNumber: user.phoneNumber,
+      photoURL: user.photoURL,
+      city: ''
+    };
+    if (docs.docs.length === 0) {
+      await addDoc(collection(db, "users"), data);
+      dispatch(login(data));
     }
+    else {
+      const querySnapshot = await getDocs(collection(db, "users"));
+      let documentsID, severData;
+      querySnapshot.forEach((doc) => {
+        if (doc.data().uid == user.uid) {
+          documentsID = doc.id;
+          severData = doc.data();
+          return;
+        }
+      });
+      dispatch(login(severData));
+
+    }
+
+    history.replace("/");
   }
 
-  useEffect(() => {
-    if (user) {
-      handleDispatch();
-      history.replace("/");
-    }
-  }, [user]);
 
   const formik = useFormik({
     initialValues: {
@@ -164,7 +158,7 @@ const Login = () => {
               <StyledButtonMUI
                 variant="contained"
                 fullWidth
-                onClick={signInWithGoogle}
+                onClick={(e) => handleGoogleSignIn()}
               >
                 Login with Google
               </StyledButtonMUI>
