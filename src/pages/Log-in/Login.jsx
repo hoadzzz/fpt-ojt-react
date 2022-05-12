@@ -39,13 +39,12 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: () => {
       handleSignIn();
     },
   });
   useEffect(() => {
     if (user) {
-      console.log(user.phoneNumber);
       dispatch(
         login({
           name: user.displayName,
