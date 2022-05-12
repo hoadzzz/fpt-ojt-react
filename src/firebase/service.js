@@ -1,25 +1,10 @@
-import { initializeApp } from "firebase/app";
 import {
-  createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut
+  createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut
 } from "firebase/auth";
 import {
-  addDoc, collection, getDocs, getFirestore,
-  query, where
+  addDoc, collection, getDocs, query, where
 } from "firebase/firestore";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBupkqx2QAVBRbjFQ9Apj2iMwLY7MR7yBQ",
-  authDomain: "ojt-react.firebaseapp.com",
-  projectId: "ojt-react",
-  storageBucket: "ojt-react.appspot.com",
-  messagingSenderId: "994805892768",
-  appId: "1:994805892768:web:0bead0659b1aff219c2bc5",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { auth, db } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -34,8 +19,8 @@ const signInWithGoogle = async () => {
         uid: user.uid,
         firstName: user.displayName.split(" ")[0],
         lastName: user.displayName.split(" ")[1],
-        authProvider: "google",
         email: user.email,
+        phoneNumber: user.phoneNumber,
       });
     }
   } catch (err) {

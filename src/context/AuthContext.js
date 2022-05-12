@@ -1,7 +1,7 @@
 import { Spinner } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { auth } from '../firebase';
+import { auth } from '../firebase/config';
 const spinnerStyle = {
     display: 'grid',
     justifyContent: 'center',
@@ -18,10 +18,8 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribed = auth.onAuthStateChanged((user) => {
             if (user) {
-                const { displayName, email, uid, phoneNumber, photoURL } = user
-                setUser({ displayName, email, uid, phoneNumber, photoURL });
-                setIsLoading(false);
-                history.push('/');
+                const { displayName, email, uid, phoneNumber, photoURL, address } = user
+                setUser({ displayName, email, uid, phoneNumber, photoURL, address });
             }
             setIsLoading(false);
             history.push('/login');
