@@ -4,8 +4,8 @@ import { getFirestore } from 'firebase/firestore'
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBupkqx2QAVBRbjFQ9Apj2iMwLY7MR7yBQ",
-    authDomain: "ojt-react.firebaseapp.com",
+    apiKey: process.env.REACT_APP_FIREBASE_API,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
     projectId: "ojt-react",
     storageBucket: "ojt-react.appspot.com",
     messagingSenderId: "994805892768",

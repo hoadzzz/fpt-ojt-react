@@ -1,7 +1,9 @@
+import { useToast } from "@chakra-ui/react";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { withRouter } from "react-router";
+import { pushToast } from "../../../firebase/service";
 import { remove } from "../../../redux/productModal/productModalSlice";
 import { addItem } from "../../../redux/shoppingCart/cartItemsSlide";
 import numberWithCommas from "../../../utils/numberWithCommas";
@@ -34,6 +36,7 @@ const ProductView = (props) => {
   const [size, setSize] = useState(undefined);
 
   const [quantity, setQuantity] = useState(1);
+  const toast = useToast();
 
   const updateQuantity = (type) => {
     if (type === "plus") {
@@ -52,15 +55,24 @@ const ProductView = (props) => {
 
   const check = () => {
     if (color === undefined) {
-      alert("Vui lòng chọn màu sắc!");
+      pushToast(
+        toast,
+        '',
+        "Vui lòng chọn màu sắc!",
+        'warning',
+      )
       return false;
     }
 
     if (size === undefined) {
-      alert("Vui lòng chọn kích cỡ!");
+      pushToast(
+        toast,
+        '',
+        "Vui lòng chọn kích cỡ!",
+        'warning',
+      )
       return false;
     }
-
     return true;
   };
 
@@ -74,9 +86,19 @@ const ProductView = (props) => {
         quantity: quantity,
       };
       if (dispatch(addItem(newItem))) {
-        alert("Success");
+        pushToast(
+          toast,
+          '',
+          "Sản phẩm đã được thêm vào giỏ hàng",
+          'success',
+        )
       } else {
-        alert("Fail");
+        pushToast(
+          toast,
+          '',
+          "Opp! đã có lỗi xảy ra :(",
+          'error',
+        )
       }
     }
   };
@@ -94,7 +116,12 @@ const ProductView = (props) => {
         dispatch(remove());
         props.history.push("/cart");
       } else {
-        alert("Fail");
+        pushToast(
+          toast,
+          '',
+          "Opp! đã có lỗi xảy ra :(",
+          'error',
+        )
       }
     }
   };
@@ -150,9 +177,8 @@ const ProductView = (props) => {
             {product.colors.map((item, index) => (
               <div
                 key={index}
-                className={`product__info__item__list__item ${
-                  color === item ? "active" : ""
-                }`}
+                className={`product__info__item__list__item ${color === item ? "active" : ""
+                  }`}
                 onClick={() => setColor(item)}
               >
                 <div className={`circle bg-${item}`}></div>
@@ -166,9 +192,8 @@ const ProductView = (props) => {
             {product.size.map((item, index) => (
               <div
                 key={index}
-                className={`product__info__item__list__item ${
-                  size === item ? "active" : ""
-                }`}
+                className={`product__info__item__list__item ${size === item ? "active" : ""
+                  }`}
                 onClick={() => setSize(item)}
               >
                 <span className="product__info__item__list__item__size">
@@ -204,9 +229,8 @@ const ProductView = (props) => {
         </div>
       </div>
       <div
-        className={`product-description mobile ${
-          descriptionExpand ? "expand" : ""
-        }`}
+        className={`product-description mobile ${descriptionExpand ? "expand" : ""
+          }`}
       >
         <div className="product-description__title">Chi tiết sản phẩm</div>
         <div
