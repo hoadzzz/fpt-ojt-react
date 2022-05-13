@@ -73,7 +73,7 @@ const Signup = () => {
       });
       history.replace("/login");
     }
-  }, [user]);
+  }, [user, history]);
 
   return (
     <Helmet title="Đăng ký">

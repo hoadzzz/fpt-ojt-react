@@ -1,4 +1,3 @@
-import { useState, useRef } from 'react'
 import {
     Avatar,
     AvatarBadge,
@@ -15,35 +14,78 @@ import {
     ModalOverlay,
     Text,
     useDisclosure,
-    VStack,
+    useToast,
+    VStack
 } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
+import { doc, updateDoc } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { db, storage } from '../../../firebase/config'
+import { getDocID, pushToast } from '../../../firebase/service'
 import { userSelector } from '../../../redux/selectors'
+import { login } from '../../../redux/user/userSlice'
 
 const avatar = require("../../../assets/images/avatar.png").default
 
 function UserAvatar() {
     const user = useSelector(userSelector);
-
+    const dispatch = useDispatch();
     const [userProfile, setUserProfile] = useState(user == null ? null : user.photoURL)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const profileImage = useRef(null)
-
+    const toast = useToast();
     const openChooseImage = () => {
-        profileImage.current.click()
+        profileImage.current.click();
     }
 
-    const changeProfileImage = event => {
-        const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg']
-        const selected = event.target.files[0]
-
+    async function changeProfileImage(event) {
+        const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
+        const selected = event.target.files[0];
         if (selected && ALLOWED_TYPES.includes(selected.type)) {
-            let reader = new FileReader()
-            reader.onloadend = () => setUserProfile(reader.result)
-            return reader.readAsDataURL(selected)
-        }
+            try {
+                let reader = new FileReader();
+                reader.onloadend = () => setUserProfile(reader.result)
 
+                const storageRef = ref(storage, 'images/' + selected.name);
+
+                /** @type {any} */
+                const metadata = {
+                    contentType: 'image/jpeg',
+                };
+                await uploadBytes(storageRef, selected, metadata);
+
+                const documentsID = await getDocID(user);
+                getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
+                    const userRef = doc(db, "users", documentsID);
+                    updateDoc(userRef, {
+                        photoURL: url
+                    });
+                    dispatch(login(
+                        {
+                            ...user,
+                            photoURL: url
+                        }
+                    ));
+                    pushToast(
+                        toast,
+                        'Thành công',
+                        "Avatar của bạn đã được lưu",
+                        'success',
+                    )
+                });
+                return reader.readAsDataURL(selected)
+            }
+            catch (err) {
+                pushToast(
+                    toast,
+                    'Thất bại',
+                    "Opp! đã có lỗi xảy ra :(",
+                    'error',
+                )
+            }
+        }
         onOpen()
     }
 
@@ -96,7 +138,7 @@ function UserAvatar() {
             </Modal>
             <VStack spacing={1}>
                 <Heading as="h3" fontSize="xl" color="brand.dark">
-                    {user != null ? user.name : 'Scolt Lee'}
+                    {user != null ? user.displayName : 'Scolt Lee'}
                 </Heading>
                 <Text color="brand.gray" fontSize="sm">
                     CEO of FPT

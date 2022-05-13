@@ -109,11 +109,11 @@ const Home = () => {
       {/* end new arrival section */}
 
       {/* banner */}
-      {/* <Section>
-                <SectionBody>
-                    <Banner />
-                </SectionBody>
-            </Section> */}
+      <Section>
+        <SectionBody>
+          <Banner />
+        </SectionBody>
+      </Section>
       {/* end banner */}
 
       {/* popular product section */}

@@ -1,45 +1,12 @@
 import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
+  createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signOut
 } from "firebase/auth";
 import {
-  addDoc,
-  collection,
-  deleteDoc,
-  setDoc,
-  doc,
-  getDocs,
-  query,
-  where,
+  addDoc, collection, deleteDoc, doc, getDocs, query, setDoc, where
 } from "firebase/firestore";
 import { auth, db } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
-
-const signInWithGoogle = async () => {
-  try {
-    const res = await signInWithPopup(auth, googleProvider);
-    const user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        firstName: user.displayName.split(" ")[0],
-        lastName: user.displayName.split(" ")[1],
-        email: user.email,
-        phoneNumber: user.phoneNumber,
-      });
-    }
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
@@ -88,11 +55,6 @@ const getCart = async (userId) => {
       where("status", "==", "active")
     );
     const docs = await getDocs(q);
-    const emptyCart = {
-      uid: userId,
-      status: "active",
-      products: [],
-    };
 
     if (docs.docs.length > 0) {
       return docs.docs.at(0).data();
@@ -152,17 +114,43 @@ const checkoutCart = async (userId, cart, address, payment) => {
   }
 };
 
+async function getDocID(user) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  let documentsID;
+  querySnapshot.forEach((doc) => {
+    if (doc.data().uid === user.uid) {
+      documentsID = doc.id;
+      return documentsID;
+    }
+  });
+  return documentsID;
+}
+
+const pushToast = (toast, title, description, status)=>{
+  toast({
+    title: title,
+    description: description,
+    status: status,
+    duration: 3000,
+    isClosable: true,
+    position: 'top'
+    
+  })
+}
 export {
-  getCart,
+  googleProvider,
   auth,
   db,
+  getCart,
   checkoutCart,
   updateCart,
-  signInWithGoogle,
+  getDocID,
   signInWithEmailAndPassword,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
   sendPasswordResetEmail,
   logout,
+  pushToast
 };
+

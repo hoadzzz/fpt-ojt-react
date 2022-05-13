@@ -1,5 +1,4 @@
 import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
-import ButtonAction from '../../atoms/ButtonAction/ButtonAction';
 import AccountSettings from '../../organisms/AccountSettings/AccoutSettings';
 import CompanySettings from '../../organisms/CompanySettings/CompanySettings';
 import Notifications from '../../organisms/Notifications/Notifications';
@@ -53,7 +52,7 @@ const ProfileDetail = () => {
                 </TabPanels>
             </Tabs>
 
-            <ButtonAction />
+           
         </Box>
     )
 }

@@ -5,11 +5,9 @@ import productData from "../../assets/fake-data/products";
 import Button from "../../components/atoms/Button/Button";
 import CartItem from "../../components/molecules/CartItem/CartItem";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { cartItemsSelector, userSelector } from "../../redux/selectors";
+import { cartItemsSelector } from "../../redux/selectors";
 import numberWithCommas from "../../utils/numberWithCommas";
 
-import { getFirestore, collection } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
 
 const Cart = () => {
   const cartItems = useSelector(cartItemsSelector);
