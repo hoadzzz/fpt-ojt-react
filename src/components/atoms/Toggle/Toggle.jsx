@@ -1,13 +1,14 @@
 import Moon from '@iconscout/react-unicons/icons/uil-moon'
 import Sun from '@iconscout/react-unicons/icons/uil-sun'
 import React, { useContext } from 'react'
-import { themeContext } from '../../../Context'
+import { themeContext } from '../../../context/ThemeContext'
 
 const Toggle = () => {
   const theme = useContext(themeContext);
-  const darkMode = theme.state.darkMode;
+  let darkMode = theme.state.darkMode;
   const handleClick = () => {
-    theme.dispatch({ type: 'toggle' })
+    localStorage.setItem('darkMode', !darkMode);
+    theme.dispatch({ type: 'toggle' });
   }
   return (
     <div className="toggle" onClick={handleClick}>

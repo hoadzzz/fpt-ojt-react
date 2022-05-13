@@ -5,7 +5,7 @@ import cartItemsReducer from "./shoppingCart/cartItemsSlide";
 import userReducer from "./user/userSlice";
 
 import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "./sagas";
+import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 

@@ -28,7 +28,6 @@ const Routes = () => {
       <Route path="/about" component={About} />
       <Route path="/search/:keyword" component={Search} />
       <Route path="/user-profile" component={UserProfile} />
-
     </Switch>
   );
 };

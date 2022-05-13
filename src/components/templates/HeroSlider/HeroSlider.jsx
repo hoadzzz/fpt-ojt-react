@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { themeContext } from '../../../Context'
+import { themeContext } from '../../../context/ThemeContext'
 import Button from '../../atoms/Button/Button'
 
 const HeroSlider = props => {

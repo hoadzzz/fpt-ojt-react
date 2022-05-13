@@ -1,8 +1,8 @@
 import { createContext, useReducer } from "react";
 
 export const themeContext = createContext();
-
-const initialState = { darkMode: false };
+const localTheme = localStorage.getItem('darkMode');
+const initialState = { darkMode: localTheme == null ? false : localTheme };
 
 const themeReducer = (state, action) => {
   switch (action.type) {

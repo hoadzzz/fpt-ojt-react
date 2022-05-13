@@ -17,8 +17,12 @@ import { useDispatch, useSelector } from "react-redux";
 import productData from "../../assets/fake-data/products";
 import Button from "../../components/atoms/Button/Button";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { selectedCity, selectedDistrict, selectedWard } from "../../redux/location/locationSlice";
-import { cartItemsSelector, locationSelector } from '../../redux/selectors.js';
+import {
+  selectedCity,
+  selectedDistrict,
+  selectedWard,
+} from "../../redux/location/locationSlice";
+import { cartItemsSelector, locationSelector } from "../../redux/selectors.js";
 import numberWithCommas from "../../utils/numberWithCommas";
 
 const StyledCard = styled(Card)(() => ({
@@ -36,13 +40,14 @@ const StyledMethodPayMent = styled(Box)(() => ({
   alignItems: "center",
 }));
 
-
 const styleInput = {
-  color: 'var(--blue)',
-  backgroundColor: 'white',
-  borderRadius: '5px',
-  fontSize: '16px', paddingLeft: '5px', paddingRight: '5px'
-}
+  color: "var(--blue)",
+  backgroundColor: "white",
+  borderRadius: "5px",
+  fontSize: "16px",
+  paddingLeft: "5px",
+  paddingRight: "5px",
+};
 const paymentMethods = [
   {
     value: "VNPAY-QR",
@@ -63,7 +68,7 @@ const paymentMethods = [
 ];
 
 const style = {
-  backgroundColor: "white"
+  backgroundColor: "white",
 };
 
 const Checkout = () => {
@@ -71,14 +76,14 @@ const Checkout = () => {
 
   const cartItems = useSelector(cartItemsSelector);
   const location = useSelector(locationSelector);
-  const cartProducts = productData.getCartItemsInfo(cartItems);
+  const cartProducts = productData.getCartItemsInfo(cartItems.products);
 
   const [paymentMethod, setPaymentMethod] = useState("VNPAY-QR");
 
   const handleChangePaymentMethod = (event) =>
     setPaymentMethod(event.target.value);
 
-  const totalPrice = cartItems.reduce(
+  const totalPrice = cartItems.products.reduce(
     (total, item) => total + Number(item.quantity) * Number(item.price),
     0
   );
@@ -101,7 +106,7 @@ const Checkout = () => {
               type="text"
               className="form-control"
               placeholder="Họ và tên"
-              style={{ fontSize: '16px' }}
+              style={{ fontSize: "16px" }}
             />
           </div>
           <div className="form-group">
@@ -109,11 +114,17 @@ const Checkout = () => {
               type="text"
               className="form-control"
               placeholder="Số điện thoại"
-              style={{ fontSize: '16px' }}
+              style={{ fontSize: "16px" }}
             />
           </div>
           <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
-            <InputLabel id="demo-simple-select-label" className="c-inputLabel" style={styleInput}>Tỉnh thành</InputLabel>
+            <InputLabel
+              id="demo-simple-select-label"
+              className="c-inputLabel"
+              style={styleInput}
+            >
+              Tỉnh thành
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -134,14 +145,18 @@ const Checkout = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
-            <InputLabel id="address-district" style={styleInput}>Quận huyện</InputLabel>
+            <InputLabel id="address-district" style={styleInput}>
+              Quận huyện
+            </InputLabel>
             <Select
               value={location.address.district}
               name="district"
               labelId="address-district"
               id="address-district"
               label="address-district"
-              onChange={(event) => dispatch(selectedDistrict(event.target.value))}
+              onChange={(event) =>
+                dispatch(selectedDistrict(event.target.value))
+              }
             >
               <MenuItem value="">
                 <em>None</em>
@@ -154,7 +169,9 @@ const Checkout = () => {
             </Select>
           </FormControl>
           <FormControl sx={{ m: "15px 0px" }} fullWidth style={style}>
-            <InputLabel id="address-ward" style={styleInput}>Phường xã</InputLabel>
+            <InputLabel id="address-ward" style={styleInput}>
+              Phường xã
+            </InputLabel>
             <Select
               name="ward"
               labelId="address-ward"
@@ -216,7 +233,7 @@ const Checkout = () => {
                       value={item.value}
                       control={<Radio />}
                       label={item.label}
-                      style={{ fontSize: '16px' }}
+                      style={{ fontSize: "16px" }}
                     />
                     <img src={item.image} alt="" height="auto" width="52" />
                   </StyledMethodPayMent>

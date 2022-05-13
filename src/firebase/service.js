@@ -1,7 +1,5 @@
-import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   GoogleAuthProvider,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -11,27 +9,14 @@ import {
 import {
   addDoc,
   collection,
+  deleteDoc,
+  setDoc,
   doc,
   getDocs,
-  getFirestore,
   query,
-  setDoc,
-  updateDoc,
   where,
 } from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBupkqx2QAVBRbjFQ9Apj2iMwLY7MR7yBQ",
-  authDomain: "ojt-react.firebaseapp.com",
-  projectId: "ojt-react",
-  storageBucket: "ojt-react.appspot.com",
-  messagingSenderId: "994805892768",
-  appId: "1:994805892768:web:0bead0659b1aff219c2bc5",
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { auth, db } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -46,8 +31,8 @@ const signInWithGoogle = async () => {
         uid: user.uid,
         firstName: user.displayName.split(" ")[0],
         lastName: user.displayName.split(" ")[1],
-        authProvider: "google",
         email: user.email,
+        phoneNumber: user.phoneNumber,
       });
     }
   } catch (err) {
@@ -95,11 +80,84 @@ const logout = () => {
   signOut(auth);
 };
 
+const getCart = async (userId) => {
+  try {
+    const q = query(
+      collection(db, "carts"),
+      where("uid", "==", userId),
+      where("status", "==", "active")
+    );
+    const docs = await getDocs(q);
+    const emptyCart = {
+      uid: userId,
+      status: "active",
+      products: [],
+    };
+
+    if (docs.docs.length > 0) {
+      return docs.docs.at(0).data();
+    } else {
+      const emptyCart = {
+        uid: userId,
+        status: "active",
+        products: [],
+      };
+      await addDoc(collection(db, "carts"), emptyCart);
+      return emptyCart;
+    }
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+const updateCart = async (userId, cart) => {
+  try {
+    const q = query(
+      collection(db, "carts"),
+      where("uid", "==", userId),
+      where("status", "==", "active")
+    );
+    const docs = await getDocs(q);
+
+    const documentId = docs.docs.at(0).id;
+
+    await setDoc(doc(collection(db, "carts"), documentId), cart);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+const checkoutCart = async (userId, cart, address, payment) => {
+  try {
+    const q = query(
+      collection(db, "carts"),
+      where("uid", "==", userId),
+      where("status", "==", "active")
+    );
+    const docs = await getDocs(q);
+
+    const documentId = docs.docs.at(0).id;
+    const cartData = docs.docs.at(0).data();
+
+    await deleteDoc(doc(collection(db, "carts"), documentId), cart);
+    const order = {
+      uid: userId,
+      ...cartData,
+      address,
+      payment,
+    };
+    await setDoc(doc(collection(db, "orders"), documentId), order);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
 export {
-  app,
+  getCart,
   auth,
   db,
-  getCartFromUser,
+  checkoutCart,
+  updateCart,
   signInWithGoogle,
   signInWithEmailAndPassword,
   logInWithEmailAndPassword,

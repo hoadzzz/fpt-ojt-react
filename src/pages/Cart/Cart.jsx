@@ -15,25 +15,26 @@ const Cart = () => {
   const cartItems = useSelector(cartItemsSelector);
 
   const [cartProducts, setCartProducts] = useState(
-    productData.getCartItemsInfo(cartItems)
+    productData.getCartItemsInfo(cartItems.products)
   );
 
   const [totalProducts, setTotalProducts] = useState(0);
 
   const [totalPrice, setTotalPrice] = useState(0);
 
-  const user = useSelector(userSelector);
-
   useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo(cartItems));
+    setCartProducts(productData.getCartItemsInfo(cartItems.products));
     setTotalPrice(
-      cartItems.reduce(
+      cartItems.products.reduce(
         (total, item) => total + Number(item.quantity) * Number(item.price),
         0
       )
     );
     setTotalProducts(
-      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
+      cartItems.products.reduce(
+        (total, item) => total + Number(item.quantity),
+        0
+      )
     );
   }, [cartItems]);
 

@@ -9,6 +9,7 @@ import InfinityList from "../../components/organisms/InfinityList/InfinityList";
 import Helmet from "../../components/templates/Helmet/Helmet";
 
 const Catalog = () => {
+  
   const initFilter = {
     category: [],
     color: [],

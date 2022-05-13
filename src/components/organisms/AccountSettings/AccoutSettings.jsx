@@ -1,24 +1,49 @@
 import { FormControl, FormLabel, Grid, Input, Select } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../../redux/selectors';
+import { db } from '../../../firebase/config';
+import { useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+
 
 function AccountSettings() {
+    const user = useSelector(userSelector);
+    let userName, lastName, firstName;
+    if (user != null) {
+        userName = user.name;
+        lastName = userName.substring(0, userName.indexOf(' '));
+        firstName = userName.substring(userName.indexOf(' '), userName.length);
+    }
+
+    useEffect(() => {
+        onSnapshot(collection(db, 'users'), (snapshot) => {
+            const data = snapshot.docs.map(doc => ({
+                ...doc.data(),
+                id: doc.id
+            }))
+            console.log({ data })
+        })
+
+    }, [])
     return (
         <Grid
             templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
             gap={6}>
             <FormControl id="firstName">
                 <FormLabel>First Name</FormLabel>
-                <Input focusBorderColor="brand.blue" type="text" placeholder="Tim" />
+                <Input focusBorderColor="brand.blue" type="text" placeholder="Enter first name" value={firstName} />
             </FormControl>
             <FormControl id="lastName">
                 <FormLabel>Last Name</FormLabel>
-                <Input focusBorderColor="brand.blue" type="text" placeholder="Cook" />
+                <Input focusBorderColor="brand.blue" type="text" placeholder="Enter last name" value={lastName} />
             </FormControl>
             <FormControl id="phoneNumber">
                 <FormLabel>Số điện thoại</FormLabel>
                 <Input
                     focusBorderColor="brand.blue"
                     type="tel"
-                    placeholder="(408) 996–1010"
+                    placeholder='Enter phone number'
+                    value={user != null && user.phone != null ? user.phone : ''}
                 />
             </FormControl>
             <FormControl id="emailAddress">
@@ -26,7 +51,8 @@ function AccountSettings() {
                 <Input
                     focusBorderColor="brand.blue"
                     type="email"
-                    placeholder="tcook@apple.com"
+                    placeholder='Enter email'
+                    value={user != null ? user.email : ''}
                 />
             </FormControl>
             <FormControl id="city">

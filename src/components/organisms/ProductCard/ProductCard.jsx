@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 import { set } from "../../../redux/productModal/productModalSlice";
 import numberWithCommas from "../../../utils/numberWithCommas";
 import Button from "../../atoms/Button/Button";

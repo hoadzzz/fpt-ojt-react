@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/Logo-2.png';
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 import Grid from '../../molecules/Grid/Grid';
 
 const footerAboutLinks = [

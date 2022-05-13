@@ -8,7 +8,8 @@ import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
-import { auth, signInWithGoogle } from "../../firebase";
+import { auth } from "../../firebase/config";
+import { signInWithGoogle } from "../../firebase/service";
 import { login } from "../../redux/user/userSlice";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
@@ -30,10 +31,24 @@ const validationSchema = yup.object({
 
 const Login = () => {
   const history = useHistory();
-
   const [user] = useAuthState(auth);
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user) {
+      dispatch(
+        login({
+          name: user.displayName,
+          uid: user.uid,
+          email: user.email,
+          phone: user.phoneNumber,
+          address: user.address,
+          photoURL: user.photoURL,
+        })
+      );
+      history.replace("/");
+    }
+  }, [user]);
 
   const formik = useFormik({
     initialValues: {
@@ -41,28 +56,10 @@ const Login = () => {
       password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
-      // alert(JSON.stringify(values));
+    onSubmit: () => {
       handleSignIn();
     },
   });
-
-  useEffect(() => {
-    // Redirect homepage if user is logged in
-    if (user) {
-      dispatch(
-        login({
-          name: user.displayName,
-          uid: user.uid,
-          email: user.email,
-          phone: user.phone,
-          address: user.address,
-        })
-      );
-
-      history.replace("/");
-    }
-  }, [user, dispatch, history]);
 
   const handleSignIn = () => {
     signInWithEmailAndPassword(
@@ -109,9 +106,6 @@ const Login = () => {
             <div className="form-group">
               <div className="custom-control custom-checkbox">
                 <input type="checkbox" className="custom-control-input" />
-                {/* <label className="custom-control-label" htmlFor="customCheck1">
-                Remember me
-              </label> */}
                 <Box
                   display="flex"
                   justifyContent="space-between"
@@ -126,7 +120,6 @@ const Login = () => {
                 </Box>
               </div>
             </div>
-            {/* <Button size="sm">Đăng nhập</Button> */}
             <StyledButtonMUI
               variant="contained"
               fullWidth
@@ -134,11 +127,8 @@ const Login = () => {
             >
               Đăng nhập
             </StyledButtonMUI>
-            <Link to="/signup">{/* <Button size="sm">Đăng kí</Button> */}</Link>
-            {/* <p className="forgot-password text-right">Forgot your password?</p> */}
-
             <Box textAlign="center">
-              <Typography variant="h6" component="p">
+              <Typography variant="h6" component="p" marginTop={1}>
                 or
               </Typography>
               <StyledButtonMUI

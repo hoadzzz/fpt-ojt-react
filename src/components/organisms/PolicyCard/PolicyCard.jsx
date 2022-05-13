@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useContext } from "react";
-import { themeContext } from "../../../Context";
+import { themeContext } from "../../../context/ThemeContext";
 
 const PolicyCard = (props) => {
   const theme = useContext(themeContext);
