@@ -30,7 +30,7 @@ const Search = (props) => {
                                 <img src={product.image02} alt={product.title} />
                             </div>
                             <div className="search-item-info">
-                                <Link to={`/catalog/${product.slug}`}>
+                                <Link to={`/catalog/product/${product.slug}`}>
                                     <div className="search-item-name">
                                         {product.title}
                                     </div>
