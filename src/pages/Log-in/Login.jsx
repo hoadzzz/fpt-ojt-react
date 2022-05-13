@@ -142,7 +142,6 @@ const Login = () => {
                 </Box>
               </div>
             </div>
-
             <StyledButtonMUI
               variant="contained"
               fullWidth

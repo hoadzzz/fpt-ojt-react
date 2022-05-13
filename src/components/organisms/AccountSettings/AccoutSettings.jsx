@@ -3,9 +3,10 @@ import { collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../../firebase/config';
-import { getDocID } from '../../../firebase/service';
+import { getDocID, pushToast } from '../../../firebase/service';
 import { locationSelector, userSelector } from '../../../redux/selectors';
 import { login } from '../../../redux/user/userSlice';
+import { useToast } from '@chakra-ui/react'
 
 function AccountSettings() {
     const user = useSelector(userSelector);
@@ -15,25 +16,45 @@ function AccountSettings() {
     const [firstName, setFirstName] = useState(user != null ? user.firstName : '');
     const [lastName, setLastName] = useState(user != null ? user.lastName : '');
     const [city, setCity] = useState(user != null ? user.city : '');
-    const dispatch = useDispatch();
 
+
+
+    const dispatch = useDispatch();
+    const toast = useToast();
 
     async function handleClick() {
-        const documentsID = getDocID(user);
-        if (user != null) {
-            const data = {
-                uid: user.uid,
-                email: email,
-                displayName: lastName + ' ' + firstName,
-                firstName: firstName,
-                lastName: lastName,
-                phoneNumber: phoneNumber,
-                photoURL: user.photoURL,
-                city: city
-            };
-            setDoc(doc(collection(db, 'users'), documentsID), data);
-            dispatch(login(data))
+        try {
+            const documentsID = await getDocID(user);
+            if (user != null) {
+                const data = {
+                    uid: user.uid,
+                    email: email,
+                    displayName: lastName + ' ' + firstName,
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phoneNumber,
+                    photoURL: user.photoURL,
+                    city: city
+                };
+                setDoc(doc(collection(db, 'users'), documentsID), data);
+                dispatch(login(data));
+                pushToast(
+                    toast,
+                    'Thành công',
+                    "Thông tin của bạn đã được lưu",
+                    'success',
+                )
+            }
         }
+        catch (err) {
+            pushToast(
+                toast,
+                'Thất bại',
+                "Opp! đã có lỗi xảy ra :(",
+                'error',
+            )
+        }
+
     }
 
     return (

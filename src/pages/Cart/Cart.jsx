@@ -8,11 +8,12 @@ import Helmet from "../../components/templates/Helmet/Helmet";
 import { cartItemsSelector } from "../../redux/selectors";
 import numberWithCommas from "../../utils/numberWithCommas";
 
+
 const Cart = () => {
   const cartItems = useSelector(cartItemsSelector);
 
   const [cartProducts, setCartProducts] = useState(
-    productData.getCartItemsInfo(cartItems)
+    productData.getCartItemsInfo(cartItems.products)
   );
 
   const [totalProducts, setTotalProducts] = useState(0);
@@ -20,15 +21,18 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo(cartItems));
+    setCartProducts(productData.getCartItemsInfo(cartItems.products));
     setTotalPrice(
-      cartItems.reduce(
+      cartItems.products.reduce(
         (total, item) => total + Number(item.quantity) * Number(item.price),
         0
       )
     );
     setTotalProducts(
-      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
+      cartItems.products.reduce(
+        (total, item) => total + Number(item.quantity),
+        0
+      )
     );
   }, [cartItems]);
 
@@ -44,7 +48,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="cart__info__btn">
-            <Link to='/checkout'>
+            <Link to="/checkout">
               <Button size="block">Đặt hàng</Button>
             </Link>
 

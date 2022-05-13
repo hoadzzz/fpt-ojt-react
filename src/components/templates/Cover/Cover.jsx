@@ -12,14 +12,15 @@ import {
     ModalHeader,
     ModalOverlay,
     Text,
-    useDisclosure
+    useDisclosure,
+    useToast
 } from '@chakra-ui/react';
 import { doc, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { db, storage } from '../../../firebase/config';
-import { getDocID } from '../../../firebase/service';
+import { getDocID, pushToast } from '../../../firebase/service';
 import { userSelector } from '../../../redux/selectors';
 import { login } from '../../../redux/user/userSlice';
 
@@ -34,38 +35,53 @@ export default function Cover() {
     const openChooseFile = () => {
         inputRef.current.click();
     }
-
+    const toast = useToast();
     async function handleChangeCover(event) {
         const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg']
         const selected = event.target.files[0]
 
         if (selected && ALLOWED_TYPES.includes(selected.type)) {
-            let reader = new FileReader();
-            reader.onloadend = () => setCoverImage(reader.result);
+            try {
+                let reader = new FileReader();
+                reader.onloadend = () => setCoverImage(reader.result);
 
-            const storageRef = ref(storage, 'images/' + selected.name);
+                const storageRef = ref(storage, 'images/' + selected.name);
 
-            /** @type {any} */
-            const metadata = {
-                contentType: 'image/jpeg',
-            };
-            await uploadBytes(storageRef, selected, metadata);
+                /** @type {any} */
+                const metadata = {
+                    contentType: 'image/jpeg',
+                };
+                await uploadBytes(storageRef, selected, metadata);
 
-            const documentsID = await getDocID(user);
-            getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
-                const userRef = doc(db, "users", documentsID);
-                updateDoc(userRef, {
-                    coverURL: url
-                });
-                dispatch(login(
-                    {
-                        ...user,
+                const documentsID = await getDocID(user);
+                getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
+                    const userRef = doc(db, "users", documentsID);
+                    updateDoc(userRef, {
                         coverURL: url
-                    }
-                ))
-            });
+                    });
+                    dispatch(login(
+                        {
+                            ...user,
+                            coverURL: url
+                        }
+                    ))
+                    pushToast(
+                        toast,
+                        'Thành công',
+                        "Ảnh bìa của bạn đã được lưu",
+                        'success',
+                    )
+                });
 
-            return reader.readAsDataURL(selected);
+                return reader.readAsDataURL(selected);
+            } catch (err) {
+                pushToast(
+                    toast,
+                    'Thất bại',
+                    "Opp! đã có lỗi xảy ra :(",
+                    'error',
+                )
+            }
         }
 
         onOpen()

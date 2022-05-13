@@ -14,6 +14,7 @@ import {
     ModalOverlay,
     Text,
     useDisclosure,
+    useToast,
     VStack
 } from '@chakra-ui/react'
 import { doc, updateDoc } from 'firebase/firestore'
@@ -21,7 +22,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { db, storage } from '../../../firebase/config'
-import { getDocID } from '../../../firebase/service'
+import { getDocID, pushToast } from '../../../firebase/service'
 import { userSelector } from '../../../redux/selectors'
 import { login } from '../../../redux/user/userSlice'
 
@@ -34,7 +35,7 @@ function UserAvatar() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const profileImage = useRef(null)
-
+    const toast = useToast();
     const openChooseImage = () => {
         profileImage.current.click();
     }
@@ -43,31 +44,47 @@ function UserAvatar() {
         const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg'];
         const selected = event.target.files[0];
         if (selected && ALLOWED_TYPES.includes(selected.type)) {
-            let reader = new FileReader();
-            reader.onloadend = () => setUserProfile(reader.result)
+            try {
+                let reader = new FileReader();
+                reader.onloadend = () => setUserProfile(reader.result)
 
-            const storageRef = ref(storage, 'images/' + selected.name);
+                const storageRef = ref(storage, 'images/' + selected.name);
 
-            /** @type {any} */
-            const metadata = {
-                contentType: 'image/jpeg',
-            };
-            await uploadBytes(storageRef, selected, metadata);
+                /** @type {any} */
+                const metadata = {
+                    contentType: 'image/jpeg',
+                };
+                await uploadBytes(storageRef, selected, metadata);
 
-            const documentsID = await getDocID(user);
-            getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
-                const userRef = doc(db, "users", documentsID);
-                updateDoc(userRef, {
-                    photoURL: url
-                });
-                dispatch(login(
-                    {
-                        ...user,
+                const documentsID = await getDocID(user);
+                getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
+                    const userRef = doc(db, "users", documentsID);
+                    updateDoc(userRef, {
                         photoURL: url
-                    }
-                ))
-            });
-            return reader.readAsDataURL(selected)
+                    });
+                    dispatch(login(
+                        {
+                            ...user,
+                            photoURL: url
+                        }
+                    ));
+                    pushToast(
+                        toast,
+                        'Thành công',
+                        "Avatar của bạn đã được lưu",
+                        'success',
+                    )
+                });
+                return reader.readAsDataURL(selected)
+            }
+            catch (err) {
+                pushToast(
+                    toast,
+                    'Thất bại',
+                    "Opp! đã có lỗi xảy ra :(",
+                    'error',
+                )
+            }
         }
         onOpen()
     }
