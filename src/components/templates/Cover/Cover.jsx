@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react'
 import {
     Badge,
     Box,
@@ -13,28 +12,60 @@ import {
     ModalHeader,
     ModalOverlay,
     Text,
-    useDisclosure,
-} from '@chakra-ui/react'
+    useDisclosure
+} from '@chakra-ui/react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { db, storage } from '../../../firebase/config';
+import { getDocID } from '../../../firebase/service';
+import { userSelector } from '../../../redux/selectors';
+import { login } from '../../../redux/user/userSlice';
 
 const cover = require("../../../assets/images/cover.png").default
 
 export default function Cover() {
-    const [coverImage, setCoverImage] = useState(null)
-    const inputRef = useRef(null)
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
+    const user = useSelector(userSelector);
+    const [coverImage, setCoverImage] = useState(user == null ? cover : user.coverURL);
+    const inputRef = useRef(null);
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const dispatch = useDispatch();
     const openChooseFile = () => {
-        inputRef.current.click()
+        inputRef.current.click();
     }
 
-    const handleChangeCover = event => {
+    async function handleChangeCover(event) {
         const ALLOWED_TYPES = ['image/png', 'image/jpeg', 'image/jpg']
         const selected = event.target.files[0]
 
         if (selected && ALLOWED_TYPES.includes(selected.type)) {
-            let reader = new FileReader()
-            reader.onloadend = () => setCoverImage(reader.result)
-            return reader.readAsDataURL(selected)
+            let reader = new FileReader();
+            reader.onloadend = () => setCoverImage(reader.result);
+
+            const storageRef = ref(storage, 'images/' + selected.name);
+
+            /** @type {any} */
+            const metadata = {
+                contentType: 'image/jpeg',
+            };
+            await uploadBytes(storageRef, selected, metadata);
+
+            const documentsID = await getDocID(user);
+            getDownloadURL(ref(storage, 'images/' + selected.name)).then((url) => {
+                const userRef = doc(db, "users", documentsID);
+                updateDoc(userRef, {
+                    coverURL: url
+                });
+                dispatch(login(
+                    {
+                        ...user,
+                        coverURL: url
+                    }
+                ))
+            });
+
+            return reader.readAsDataURL(selected);
         }
 
         onOpen()
@@ -46,7 +77,7 @@ export default function Cover() {
                 w="full"
                 h="full"
                 objectFit="cover"
-                src={coverImage ? coverImage : cover}
+                src={coverImage}
                 alt="Cover"
             />
             <Button

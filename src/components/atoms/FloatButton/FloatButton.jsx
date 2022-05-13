@@ -11,7 +11,7 @@ const mainButtonStyles = {
     height: '50px'
 };
 
-const actionButtonStyles = {
+const actionbuttonstyles = {
     backgroundColor: 'var(--blue)',
     color: 'black',
     width: '40px',
@@ -35,20 +35,20 @@ const FloatButton = () => {
     return (
         <Fab
             mainButtonStyles={mainButtonStyles}
-            actionButtonStyles={actionButtonStyles}
+            actionbuttonstyles={actionbuttonstyles}
             style={style}
             icon={<FontAwesomeIcon icon={faCirclePlus} style={iconStyles}></FontAwesomeIcon>}
             alwaysShowTitle={true}
         >
             <Action
                 text="About us"
-                style={actionButtonStyles}>
+                style={actionbuttonstyles}>
                 <Link to='/about'><FontAwesomeIcon icon={faCircleInfo} style={iconStyles}></FontAwesomeIcon></Link>
             </Action>
 
             <Action
                 text="Help"
-                style={actionButtonStyles}>
+                style={actionbuttonstyles}>
                 <FontAwesomeIcon icon={faCircleQuestion} style={iconStyles}></FontAwesomeIcon>
             </Action>
         </Fab>

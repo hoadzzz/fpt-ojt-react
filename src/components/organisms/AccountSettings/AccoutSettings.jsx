@@ -1,11 +1,11 @@
 import { Box, Button, FormControl, FormLabel, Grid, Input, Select } from '@chakra-ui/react';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { db } from '../../../firebase/config';
+import { getDocID } from '../../../firebase/service';
 import { locationSelector, userSelector } from '../../../redux/selectors';
 import { login } from '../../../redux/user/userSlice';
-
 
 function AccountSettings() {
     const user = useSelector(userSelector);
@@ -19,14 +19,7 @@ function AccountSettings() {
 
 
     async function handleClick() {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        let documentsID;
-        querySnapshot.forEach((doc) => {
-            if (doc.data().uid == user.uid) {
-                documentsID = doc.id;
-                return;
-            }
-        });
+        const documentsID = getDocID(user);
         if (user != null) {
             const data = {
                 uid: user.uid,

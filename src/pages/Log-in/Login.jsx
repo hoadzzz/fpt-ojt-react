@@ -1,7 +1,7 @@
 import { Box, Button as ButtonMUI, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useFormik } from "formik";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -57,10 +57,9 @@ const Login = () => {
     }
     else {
       const querySnapshot = await getDocs(collection(db, "users"));
-      let documentsID, severData;
+      let severData;
       querySnapshot.forEach((doc) => {
-        if (doc.data().uid == user.uid) {
-          documentsID = doc.id;
+        if (doc.data().uid === user.uid) {
           severData = doc.data();
           return;
         }

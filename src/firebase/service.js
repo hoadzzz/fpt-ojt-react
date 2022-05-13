@@ -1,11 +1,9 @@
 import {
-  createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut
+  createUserWithEmailAndPassword, GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signOut
 } from "firebase/auth";
 import {
-  addDoc, collection, getDocs, query, where
+  addDoc, collection, getDocs
 } from "firebase/firestore";
-import { useDispatch } from "react-redux";
-import { login } from "../redux/user/userSlice";
 import { auth, db } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
@@ -49,11 +47,23 @@ const logout = () => {
   signOut(auth);
 };
 
+async function getDocID (user) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  let documentsID;
+  querySnapshot.forEach((doc) => {
+    if (doc.data().uid === user.uid) {
+      documentsID = doc.id;
+      return documentsID;
+    }
+  });
+  return documentsID;
+}
+
 export {
   googleProvider,
   auth,
   db,
-
+  getDocID,
   signInWithEmailAndPassword,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
