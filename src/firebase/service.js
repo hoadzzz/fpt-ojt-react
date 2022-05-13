@@ -16,15 +16,20 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (email, name, firstName, lastName, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
     await addDoc(collection(db, "users"), {
       uid: user.uid,
-      name,
-      authProvider: "local",
-      email,
+      email: user.email,
+      displayName: name,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: '',
+      photoURL: '',
+      city: '',
+      coverURL: ''
     });
   } catch (err) {
     alert(err.message);
@@ -123,7 +128,18 @@ async function getDocID(user) {
   return documentsID;
 }
 
-const pushToast = (toast, title, description, status)=>{
+async function getDocData(user) {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  let data;
+  querySnapshot.forEach((doc) => {
+    if (doc.data().uid === user.uid) {
+      data = doc.data();
+      return data;
+    }
+  });
+  return data;
+}
+const pushToast = (toast, title, description, status) => {
   toast({
     title: title,
     description: description,
@@ -131,7 +147,7 @@ const pushToast = (toast, title, description, status)=>{
     duration: 3000,
     isClosable: true,
     position: 'top'
-    
+
   })
 }
 export {
@@ -148,6 +164,7 @@ export {
   sendPasswordReset,
   sendPasswordResetEmail,
   logout,
-  pushToast
+  pushToast,
+  getDocData
 };
 

@@ -26,6 +26,7 @@ const SearchBox = () => {
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
             history.push(`/search/${e.target.value}`);
+            e.preventDefault();
         }
 
     }

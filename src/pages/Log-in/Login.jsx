@@ -3,14 +3,14 @@ import { styled } from "@mui/material/styles";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Helmet from "../../components/templates/Helmet/Helmet";
 import { auth, db } from "../../firebase/config";
-import { googleProvider } from "../../firebase/service";
+import { getDocData, googleProvider } from "../../firebase/service";
 import { login } from "../../redux/user/userSlice";
 
 const StyledButtonMUI = styled(ButtonMUI)(({ theme }) => ({
@@ -29,28 +29,46 @@ const validationSchema = yup.object({
     .min(6, "Password should be of minium 6 charaters length")
     .required("Password is required"),
 });
-
 const Login = () => {
   const history = useHistory();
   let [user] = useAuthState(auth);
   const dispatch = useDispatch();
+  let data;
 
-  async function handleGoogleSignIn() {
-    const res = await signInWithPopup(auth, googleProvider);
-    if (user == null)
-      user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    const data = {
+  if (user != null) {
+    data = {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      firstName: user.displayName.split(" ")[0],
-      lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
-      phoneNumber: user.phoneNumber,
-      photoURL: user.photoURL,
-      city: ''
+      firstName: user.displayName != null ? user.displayName.split(" ")[0] : '',
+      lastName: user.displayName != null ? user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length) : '',
+      phoneNumber: user.phoneNumber != null ? user.phoneNumber : '',
+      photoURL: user.photoURL != null ? user.photoURL : '',
+      city: user.city != null ? user.city : '',
+      coverURL: user.coverURL != null ? user.coverURL : ''
     };
+  }
+
+  async function handleGoogleSignIn() {
+    if (user == null) {
+      const res = await signInWithPopup(auth, googleProvider);
+      user = res.user;
+      data = {
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        firstName: user.displayName.split(" ")[0],
+        lastName: user.displayName.substring(user.displayName.indexOf(' '), user.displayName.length),
+        phoneNumber: user.phoneNumber,
+        photoURL: user.photoURL,
+        city: '',
+        coverURL: ''
+      };
+    }
+
+    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const docs = await getDocs(q);
+
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), data);
       dispatch(login(data));
@@ -65,12 +83,17 @@ const Login = () => {
         }
       });
       dispatch(login(severData));
-
     }
 
     history.replace("/");
   }
 
+  useEffect(() => {
+    if (user) {
+      dispatch(login(data));
+      history.replace("/");
+    }
+  }, [user]);
 
   const formik = useFormik({
     initialValues: {
@@ -83,12 +106,18 @@ const Login = () => {
     },
   });
 
-  const handleSignIn = () => {
-    signInWithEmailAndPassword(
+  async function handleSignIn() {
+    console.log(formik.values.email);
+    const res = await signInWithEmailAndPassword(
       auth,
       formik.values.email,
       formik.values.password
     );
+    if (user == null) {
+      user = res.user;
+      const data = await getDocData(user);
+      dispatch(login(data));
+    }
   };
 
   return (

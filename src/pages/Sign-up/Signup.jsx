@@ -56,8 +56,10 @@ const Signup = () => {
     const name = formik.values.firstName + " " + formik.values.lastName;
 
     registerWithEmailAndPassword(
-      name,
       formik.values.email,
+      name,
+      formik.values.firstName,
+      formik.values.lastName,
       formik.values.password
     );
   };
