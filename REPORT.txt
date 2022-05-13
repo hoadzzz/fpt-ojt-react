@@ -14,8 +14,8 @@ Pages:
     MinhN4: Checkout, Cart, Contact 
 
 Functions:
-    DuanML: Add Product To Cart, Switch theme(Context API)
+    DuanML: Add Product To Cart, Switch theme(Context API), Login With Google, Update User Profile On Firevase
     HoaLM5: Search, Sort Product
-    MinhN4: Update Cart, Switch theme(Redux toolkit)
+    MinhN4: Update Cart, Switch theme(Redux toolkit), Update Cart Item on Fisebase, Login With Email,
 
 Link Demo:  https://ojt-react.web.app/
