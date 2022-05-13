@@ -22,14 +22,14 @@ const Banner = () => {
             changeSlides(1);
             runAutochangeTO();
         }, autoChangeTime)
-    }, []);
+    }, [autoChangeTime]);
 
     useEffect(() => {
-        runAutochangeTO();
-        setTimeout(() => {
-            setActiveSlide(0);
-            setSliderReady(true);
-        }, 0);
+            runAutochangeTO();
+            setTimeout(() => {
+                setActiveSlide(0);
+                setSliderReady(true);
+            }, 0);
     }, [change, runAutochangeTO]);
 
     const changeSlides = (step) => {
