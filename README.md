@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Pages:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Path: "/": Home page
+- Path: "/catalog": Catalog
+- Path: "/cart": Cart
+- Path: "/contact: Contact
+- Paht: "/login": Login page
+- Path: "/signup": Signup page
+- Path: "/accessories": Accessories pages
+- Path: "/checkout": Checkout page
+- Path: "/user-profile": User profile page
+- Path: "/search/:keyword": Result search page
 
-## Available Scripts
+# Features:
 
-In the project directory, you can run:
+- Search
+- Pagination
+- Filter by catalog, size
+- Update user profile
+- Create new account by username & password or account google
+- Dark mode
+- Cart
 
-### `npm start`
+# Package/Liblary:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## UI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- MUI: Build User Interface
+- BoxIcon: icon source
+- SCSS: style css
 
-### `npm test`
+## Validation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Formik: Validate user input
 
-### `npm run build`
+## Manage state
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Context
+- Redux
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Other
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Redux saga: redux middleware handle data fetching
+- Firebase: provide api to CRUD data into firebase and deploy product
 
-### `npm run eject`
+# Link product: https://ojt-react.web.app
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Member contributes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Prepare Data:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+DuanML: Banner - Intro Image, Product Image
+HoaLM5: Slider Image, Product Image
+MinhN4: BoxIcons, Fonts, Product Image
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Components:
 
-## Learn More
+DuanML: FloatButton, CartItem, CheckBox, Footer, ProductView, Intro, Banner, FloatingDiv, Toggle, AccessoryCard, SaleCard
+HoaLM5: Grid, Header, Helmet, HeroSlider, Section, SearchBox
+MinhN4: InfinityList, Layout, PolicyCard, ProductCard, ProductViewModal
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Pages:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+DuanML: Homepage, About, Accessories, Catalog, UserProfile
+HoaLM5: Sign-up, Log-in, Product, Search
+MinhN4: Checkout, Cart, Contact
 
-### Code Splitting
+## Functions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+DuanML: Add Product To Cart, Switch theme(Context API), Login With Google, Update User Profile On Firevase
+HoaLM5: Search, Sort Product
+MinhN4: Update Cart, Switch theme(Redux toolkit), Update Cart Item on Fisebase, Login With Email,
