@@ -36,13 +36,15 @@
 
 ## Manage state
 
-- Context
-- Redux
+- Context API
+- Redux Toolkit
 
 ## Other
 
 - Redux saga: redux middleware handle data fetching
 - Firebase: provide api to CRUD data into firebase and deploy product
+- Hook: useEffect, useCallback, useRef
+- React-router
 
 # Link product: https://ojt-react.web.app
 
